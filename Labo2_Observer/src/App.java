@@ -1,6 +1,10 @@
 public class App {
     public static void main(String[] args) throws Exception 
     {
-        System.out.println("Hello, World!");
+        Chrono c = new Chrono();
+
+
+        //supposed to start when pressing a button
+        c.Start();
     }
 }
