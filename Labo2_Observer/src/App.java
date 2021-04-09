@@ -1,6 +1,13 @@
 public class App {
     public static void main(String[] args) throws Exception 
     {
-        System.out.println("Hello, World!");
+        // observeur concret
+        DigitalChrono digitalChrono = new DigitalChrono();
+
+        // sujet concret
+        Chrono chrono = new Chrono();
+
+        chrono.attach(digitalChrono); // on abonne l'observeur au sujet
+        digitalChrono.setChrono(chrono); // ??? comment rendre réciproque ("abonné" le sujet à l'observeur)
     }
 }
