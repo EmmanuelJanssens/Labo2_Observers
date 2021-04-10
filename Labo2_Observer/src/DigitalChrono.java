@@ -9,9 +9,9 @@ public class DigitalChrono extends Observer {
     DecimalFormat timeFormat = new DecimalFormat("00");
 
 
-    public DigitalChrono(){
-        JFrame frame = new JFrame("Bouncer");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public DigitalChrono(String title){
+        JFrame frame = new JFrame(title);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(300,300);
 
         JPanel panel = new JPanel();

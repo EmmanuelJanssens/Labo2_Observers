@@ -8,6 +8,9 @@ public class Chrono extends Subject {
 
     private Timer timer;
 
+    boolean paused = false;
+    boolean running = false;
+    
     public Chrono(){
 
         chronoState = new ChronoData();
@@ -21,10 +24,22 @@ public class Chrono extends Subject {
             }
         });
 
-        timer.start();
 
     }
-
+    public void Start()
+    {
+        timer.start();
+    }
+    public void Reset()
+    {
+        this.chronoState = new ChronoData();
+        timer.stop();
+        notifie();
+    }
+    public void pause()
+    {
+        timer.stop();
+    }
     public ChronoData getChronoState() {
         return chronoState;
     }

@@ -1,13 +1,8 @@
 public class App {
     public static void main(String[] args) throws Exception 
     {
-        // observeur concret
-        DigitalChrono digitalChrono = new DigitalChrono();
+        ControlPanel control = new ControlPanel(3);
 
-        // sujet concret
-        Chrono chrono = new Chrono();
-
-        chrono.attach(digitalChrono); // on abonne l'observeur au sujet
-        digitalChrono.setChrono(chrono); // ??? comment rendre réciproque ("abonné" le sujet à l'observeur)
+        
     }
 }
