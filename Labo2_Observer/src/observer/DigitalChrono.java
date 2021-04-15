@@ -1,3 +1,7 @@
+package observer;
+
+import subject.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.text.DecimalFormat;
@@ -5,21 +9,21 @@ import java.text.DecimalFormat;
 public class DigitalChrono extends Observer {
 
     private Chrono chrono; // possede ref sur sujet concret (class Subject ici ou Chrono?)
-
-    private JLabel label;
+    private JPanel panel;
+    private JLabel timeLabel;
     private final DecimalFormat timeFormat = new DecimalFormat("00");
 
-    private JFrame frame;
 
-    public DigitalChrono(String title){
-        frame = new JFrame(title);
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        frame.setSize(300,300);
+    public DigitalChrono(String name){
+        super(name);
 
-        JPanel panel = new JPanel();
-        label = new JLabel("00h 00m 00s");
-        panel.setLayout(new FlowLayout());
-        panel.add(label);
+        panel = new JPanel();
+        panel.setPreferredSize(dimension);
+
+        panel.setLayout(new GridBagLayout());
+        panel.add(new JLabel(name + ": "));
+        timeLabel = new JLabel("00h 00m 00s");
+        panel.add(timeLabel);
 
         frame.setContentPane(panel);
         frame.setVisible(true);
@@ -30,9 +34,9 @@ public class DigitalChrono extends Observer {
     }
 
     @Override
-    void update() {
+    public void update() {
         ChronoData newChronoState = chrono.getChronoState();
-        label.setText(timeFormat.format(newChronoState.getHours()) + "h "
+        timeLabel.setText(timeFormat.format(newChronoState.getHours()) + "h "
                 + timeFormat.format(newChronoState.getMinutes()) + "m "
                 + timeFormat.format(newChronoState.getSeconds()) + "s ");
     }

@@ -1,3 +1,7 @@
+package subject;
+
+import observer.Observer;
+
 import java.util.LinkedList;
 
 abstract public class Subject {

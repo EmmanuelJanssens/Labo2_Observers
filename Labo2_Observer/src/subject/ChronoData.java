@@ -1,3 +1,5 @@
+package subject;
+
 public class ChronoData {
 
     private long seconds;

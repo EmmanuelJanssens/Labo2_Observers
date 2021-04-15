@@ -1,9 +1,11 @@
+import observer.AnalogChrono;
+import observer.DigitalChrono;
+import subject.Chrono;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.LinkedList;
-import java.util.List;
 
 public class ControlPanel
 {
@@ -24,7 +26,7 @@ public class ControlPanel
         for(int i = 0; i < nbChronos; i++)
         {
             final int id = i;
-            Chrono subject = new Chrono(); 
+            Chrono subject = new Chrono();
             //create label
             JLabel label = new JLabel();
             label.setText("Chrono #" +i );
@@ -51,10 +53,28 @@ public class ControlPanel
             panel.add(restart);
             //create roman
             JButton roman = new JButton("cadran romain");
+            roman.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    AnalogChrono c = new AnalogChrono("Chrono #"+id, "images/cadran_chiffres_romains.jpg");
+                    subject.attach(c);
+                    c.setChrono(subject);
+                }
+            });
             panel.add(roman);
+
             //create arab
             JButton arab = new JButton("cadran arabe");
+            arab.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    AnalogChrono c = new AnalogChrono("Chrono #"+id, "images/cadran_chiffres_arabes.jpg");
+                    subject.attach(c);
+                    c.setChrono(subject);
+                }
+            });
             panel.add(arab);
+
             //create numeric
             JButton numeric = new JButton("numérique");
             numeric.addActionListener(new ActionListener(){
