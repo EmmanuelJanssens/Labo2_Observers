@@ -70,9 +70,7 @@ public class ControlPanel
             roman.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    AnalogChrono c = new AnalogChrono("Chrono #"+id, "images/cadran_chiffres_romains.jpg");
-                    subject.attach(c);
-                    c.setChrono(subject);
+                    new AnalogChrono(subject, "Chrono #"+id, "images/cadran_chiffres_romains.jpg");
                 }
             });
             panel.add(roman);
@@ -82,9 +80,7 @@ public class ControlPanel
             arab.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    AnalogChrono c = new AnalogChrono("Chrono #"+id, "images/cadran_chiffres_arabes.jpg");
-                    subject.attach(c);
-                    c.setChrono(subject);
+                    new AnalogChrono(subject, "Chrono #"+id, "images/cadran_chiffres_arabes.jpg");
                 }
             });
             panel.add(arab);
@@ -94,9 +90,7 @@ public class ControlPanel
             numeric.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    DigitalChrono c = new DigitalChrono("Chrono #"+id);
-                    subject.attach(c);
-                    c.setChrono(subject);
+                    new DigitalChrono(subject, "Chrono #"+id);
                 }
             }); 
             panel.add(numeric);

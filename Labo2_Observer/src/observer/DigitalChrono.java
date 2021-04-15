@@ -14,7 +14,7 @@ public class DigitalChrono extends Observer {
     private final DecimalFormat timeFormat = new DecimalFormat("00");
 
 
-    public DigitalChrono(String name){
+    public DigitalChrono( Chrono chrono, String name){
         super(name);
 
         panel = new JPanel();
@@ -27,6 +27,9 @@ public class DigitalChrono extends Observer {
 
         frame.setContentPane(panel);
         frame.setVisible(true);
+
+        this.chrono = chrono;
+        chrono.attach(this);
     }
 
     public void setChrono(Chrono c){

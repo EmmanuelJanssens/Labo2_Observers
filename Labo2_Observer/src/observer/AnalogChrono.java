@@ -14,7 +14,9 @@ public class AnalogChrono extends Observer {
     private String imgFilePath;
 
 
-    public AnalogChrono(String name, String imgFilePath){
+    public AnalogChrono(Chrono chrono, String name, String imgFilePath){
+
+
 
         super(name);
         this.imgFilePath = imgFilePath;
@@ -33,6 +35,9 @@ public class AnalogChrono extends Observer {
                     chrono.detach(current);
                 }
         });
+
+        this.chrono = chrono;
+        chrono.attach(this);
     }
 
     private class Canvas extends JPanel{
