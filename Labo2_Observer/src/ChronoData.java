@@ -1,13 +1,9 @@
 public class ChronoData {
 
     private long seconds;
-    private long minutes;
-    private long hours;
 
     public ChronoData(){
         seconds = 0;
-        minutes = 0;
-        hours = 0;
     }
 
     // équivalent de "play"
@@ -16,14 +12,14 @@ public class ChronoData {
     }
 
     public long getSeconds() {
-        return seconds;
+        return seconds % 60;
     }
 
     public long getMinutes() {
-        return minutes;
+        return (long) Math.floor(seconds / 60) % 60;
     }
 
     public long getHours() {
-        return hours;
+        return (long) Math.floor(seconds /3600);
     }
 }
