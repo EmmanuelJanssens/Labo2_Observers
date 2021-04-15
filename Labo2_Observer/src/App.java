@@ -12,5 +12,9 @@ public class App {
         digitalChrono.setChrono(chrono); // ??? comment rendre réciproque ("abonné" le sujet à l'observeur)
         chrono.attach(arabChrono);
         arabChrono.setChrono(chrono);
+
+        ControlPanel control = new ControlPanel(3);
+
+        
     }
 }

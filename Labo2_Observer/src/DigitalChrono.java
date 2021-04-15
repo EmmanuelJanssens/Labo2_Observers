@@ -11,10 +11,9 @@ public class DigitalChrono extends Observer {
 
     private JFrame frame;
 
-    public DigitalChrono(){
-
-        frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public DigitalChrono(String title){
+        frame = new JFrame(title);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(300,300);
 
         JPanel panel = new JPanel();
