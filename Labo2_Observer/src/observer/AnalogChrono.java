@@ -24,6 +24,15 @@ public class AnalogChrono extends Observer {
 
         frame.setContentPane(panel);
         frame.setVisible(true);
+
+        Observer current = this;
+
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                    chrono.detach(current);
+                }
+        });
     }
 
     private class Canvas extends JPanel{
