@@ -31,28 +31,42 @@ public class ControlPanel
             JLabel label = new JLabel();
             label.setText("Chrono #" +i );
             panel.add(label);
+
             //create start
-            JButton start = new JButton("démarrer");
+            JButton start = new JButton("Démarrer");
             start.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    subject.Start();
+                    subject.start();
                 }
             });
             panel.add(start);
+
+            //create pause
+            JButton pause = new JButton("Arreter");
+            pause.addActionListener(new ActionListener(){
+                @Override
+                public void actionPerformed(ActionEvent e)
+                {
+                    subject.pause();
+                }
+            });
+            panel.add(pause);
+
             //create restart
-            JButton restart = new JButton("réinitialiser");
+            JButton restart = new JButton("Réinitialiser");
             restart.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    subject.Reset();
+                    subject.reset();
                 }
             });
             panel.add(restart);
+
             //create roman
-            JButton roman = new JButton("cadran romain");
+            JButton roman = new JButton("Cadran romain");
             roman.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -64,7 +78,7 @@ public class ControlPanel
             panel.add(roman);
 
             //create arab
-            JButton arab = new JButton("cadran arabe");
+            JButton arab = new JButton("Cadran arabe");
             arab.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -76,7 +90,7 @@ public class ControlPanel
             panel.add(arab);
 
             //create numeric
-            JButton numeric = new JButton("numérique");
+            JButton numeric = new JButton("Numérique");
             numeric.addActionListener(new ActionListener(){
                 @Override
                 public void actionPerformed(ActionEvent e) {

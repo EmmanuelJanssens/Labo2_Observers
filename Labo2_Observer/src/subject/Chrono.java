@@ -28,11 +28,11 @@ public class Chrono extends Subject {
 
 
     }
-    public void Start()
+    public void start()
     {
         timer.start();
     }
-    public void Reset()
+    public void reset()
     {
         this.chronoState = new ChronoData();
         timer.stop();
@@ -41,12 +41,13 @@ public class Chrono extends Subject {
     public void pause()
     {
         timer.stop();
+        notifie();
     }
     public ChronoData getChronoState() {
         return chronoState;
     }
 
-    //reçoit l'info si on ppuye sur pause à travers l'observeur
+    //reçoit l'info si on appuye sur pause à travers l'observeur
     public void setChronoState(ChronoData chronoState) {
         //TODO
         this.chronoState = chronoState;
