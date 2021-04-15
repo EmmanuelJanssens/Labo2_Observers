@@ -1,6 +1,6 @@
 import observer.AnalogChrono;
 import observer.DigitalChrono;
-import subject.Chrono;
+import subject.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -105,5 +105,5 @@ public class ControlPanel
         frame.add(panel);
         frame.setVisible(true);
     }
-    
+
 }
