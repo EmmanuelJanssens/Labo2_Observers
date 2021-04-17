@@ -4,6 +4,7 @@ import subject.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 
@@ -16,8 +17,6 @@ public class AnalogChrono extends Observer {
 
     public AnalogChrono(Chrono chrono, String name, String imgFilePath){
 
-
-
         super(name);
         this.imgFilePath = imgFilePath;
 
@@ -27,13 +26,22 @@ public class AnalogChrono extends Observer {
         frame.setContentPane(panel);
         frame.setVisible(true);
 
-        Observer current = this;
-
         frame.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                    chrono.detach(current);
+                chrono.detach(AnalogChrono.this);
                 }
+        });
+
+        panel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                if(chrono.getChronoData().getCurrentState() == State.PAUSED || chrono.getChronoData().getCurrentState() == State.RESET){
+                    chrono.setChronoData(State.RUNNING);
+                } else { // currentState == State.RUNNING
+                    chrono.setChronoData(State.PAUSED);
+                }
+            }
         });
 
         this.chrono = chrono;
@@ -133,14 +141,9 @@ public class AnalogChrono extends Observer {
         }
     }
 
-    public void setChrono(Chrono c){
-        chrono = c;
-    }
-
     @Override
     public void update() {
-        ChronoData newChronoState = chrono.getChronoState();
-        panel.updatePointers(panel.getGraphics(), newChronoState);
+        panel.updatePointers(panel.getGraphics(), chrono.getChronoData());
     }
 
 }

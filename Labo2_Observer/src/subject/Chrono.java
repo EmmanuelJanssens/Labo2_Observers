@@ -7,50 +7,49 @@ import javax.swing.Timer;
 
 public class Chrono extends Subject {
 
-    private ChronoData chronoState;
+    private ChronoData chronoData;
 
     private Timer timer;
-
-    boolean paused = false;
-    boolean running = false;
     
     public Chrono(){
 
-        chronoState = new ChronoData();
+        chronoData = new ChronoData();
 
         // Toute les secondes, on augmente d'une seconde et on notifie les observeurs
         timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                chronoState.addOneSecond(); // "play"
+                chronoData.addOneSecond(); // "play"
                 notifie();
             }
         });
 
 
     }
-    public void start()
-    {
-        timer.start();
-    }
-    public void reset()
-    {
-        this.chronoState = new ChronoData();
-        timer.stop();
-        notifie();
-    }
-    public void pause()
-    {
-        timer.stop();
-        notifie();
-    }
-    public ChronoData getChronoState() {
-        return chronoState;
+
+    public ChronoData getChronoData() {
+        return chronoData;
     }
 
-    //reçoit l'info si on appuye sur pause à travers l'observeur
-    public void setChronoState(ChronoData chronoState) {
-        //TODO
-        this.chronoState = chronoState;
+    public void setChronoData(State state) {
+        this.chronoData.setCurrentState(state);
+
+        switch (state){
+            case RUNNING:
+                timer.start();
+                break;
+            case PAUSED:
+                timer.stop();
+                notifie();
+                break;
+            case RESET:
+                this.chronoData = new ChronoData();
+                timer.stop();
+                notifie();
+                break;
+            default:
+                break;
+        }
+
     }
 }

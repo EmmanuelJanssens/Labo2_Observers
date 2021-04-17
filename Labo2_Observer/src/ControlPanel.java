@@ -38,7 +38,8 @@ public class ControlPanel
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    subject.start();
+                    //subject.start();
+                    subject.setChronoData(State.RUNNING);
                 }
             });
             panel.add(start);
@@ -49,7 +50,8 @@ public class ControlPanel
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    subject.pause();
+                    //subject.pause();
+                    subject.setChronoData(State.PAUSED);
                 }
             });
             panel.add(pause);
@@ -60,7 +62,8 @@ public class ControlPanel
                 @Override
                 public void actionPerformed(ActionEvent e)
                 {
-                    subject.reset();
+                    //subject.reset();
+                    subject.setChronoData(State.RESET);
                 }
             });
             panel.add(restart);

@@ -4,6 +4,8 @@ import subject.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 
 public class DigitalChrono extends Observer {
@@ -28,17 +30,24 @@ public class DigitalChrono extends Observer {
         frame.setContentPane(panel);
         frame.setVisible(true);
 
+        panel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                if(chrono.getChronoData().getCurrentState() == State.PAUSED || chrono.getChronoData().getCurrentState() == State.RESET){
+                    chrono.setChronoData(State.RUNNING);
+                } else { // currentState == State.RUNNING
+                    chrono.setChronoData(State.PAUSED);
+                }
+            }
+        });
+
         this.chrono = chrono;
         chrono.attach(this);
     }
 
-    public void setChrono(Chrono c){
-        chrono = c;
-    }
-
     @Override
     public void update() {
-        ChronoData newChronoState = chrono.getChronoState();
+        ChronoData newChronoState = chrono.getChronoData();
         timeLabel.setText(timeFormat.format(newChronoState.getHours()) + "h "
                 + timeFormat.format(newChronoState.getMinutes()) + "m "
                 + timeFormat.format(newChronoState.getSeconds()) + "s ");
