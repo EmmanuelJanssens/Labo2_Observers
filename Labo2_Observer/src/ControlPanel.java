@@ -1,6 +1,4 @@
-import observer.AnalogChrono;
-import observer.DigitalChrono;
-import observer.Observer;
+import observer.chronoGUI.*;
 import subject.*;
 
 import javax.swing.*;
@@ -28,13 +26,13 @@ public class ControlPanel
      * @param components
      * @return
      */
-    public JFrame createChronoWindow(String title,Observer ... components)
+    public JFrame createChronoWindow(String title, ChronoPanel... components)
     {
         JFrame frame = new JFrame(title);
         frame.setLayout(new FlowLayout());
-        for(Observer observer: components)
+        for(ChronoPanel observer: components)
         {
-            frame.add(observer.getPanel());
+            frame.add(observer);
             observer.setFrameListener();
         }
         frame.setVisible(true);
@@ -62,7 +60,7 @@ public class ControlPanel
         mainPanel.add(createButton(title, new Action() {
             @Override
             public void Do() {
-                createChronoWindow(title,new AnalogChrono(subject, "Chrono #" + id, "images/cadran_chiffres_romains.jpg"));
+                createChronoWindow(title,new RomanChrono(subject, "Chrono #" + id));
             }
         }));
     }
@@ -71,7 +69,7 @@ public class ControlPanel
         mainPanel.add(createButton(title, new Action() {
             @Override
             public void Do() {
-                createChronoWindow(title, new AnalogChrono(subject, "Chrono #" + id, "images/cadran_chiffres_arabes.jpg"));
+                createChronoWindow(title, new ArabChrono(subject, "Chrono #" + id));
             }
         }));
     }
@@ -154,7 +152,7 @@ public class ControlPanel
             public void Do() {
                 List<AnalogChrono> chrono = new LinkedList<>();
                 for(int i = 0; i < subjets.size(); i++) {
-                    chrono.add( new AnalogChrono((Chrono) subjets.get(i), "Chrono #" + i, "images/cadran_chiffres_romains.jpg"));
+                    chrono.add( new RomanChrono((Chrono) subjets.get(i), "Chrono #" + i));
                 }
                 createChronoWindow("Cadran romain",  chrono.toArray(new AnalogChrono[chrono.size()]));
             }
@@ -164,7 +162,7 @@ public class ControlPanel
             public void Do() {
                 List<AnalogChrono> chrono = new LinkedList<>();
                 for(int i = 0; i < subjets.size(); i++){
-                    chrono.add( new AnalogChrono((Chrono) subjets.get(i), "Chrono #" + i, "images/cadran_chiffres_romains.jpg"));
+                    chrono.add( new ArabChrono((Chrono) subjets.get(i), "Chrono #" + i));
                 }
                 createChronoWindow("Cadran arabe", chrono.toArray(new AnalogChrono[chrono.size()]));
             }

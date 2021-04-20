@@ -1,5 +1,6 @@
 package subject;
 
+import observer.chronoGUI.ChronoPanel;
 import observer.Observer;
 
 import java.util.LinkedList;
@@ -8,7 +9,7 @@ abstract public class Subject {
 
     LinkedList<Observer> observers = new LinkedList<>();
 
-    public void attach(Observer o){
+    public void attach(ChronoPanel o){
         observers.add(o);
     }
 
