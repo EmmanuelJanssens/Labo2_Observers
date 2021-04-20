@@ -23,15 +23,10 @@ public class AnalogChrono extends Observer {
         panel = new Canvas();
         panel.setPreferredSize(dimension);
 
-        frame.setContentPane(panel);
-        frame.setVisible(true);
+        //frame.setContentPane(panel);
+        //frame.setVisible(true);
 
-        frame.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                chrono.detach(AnalogChrono.this);
-                }
-        });
+
 
         panel.addMouseListener(new MouseAdapter() {
             @Override
@@ -146,4 +141,19 @@ public class AnalogChrono extends Observer {
         panel.updatePointers(panel.getGraphics(), chrono.getChronoData());
     }
 
+    public JPanel getPanel()
+    {
+        return panel;
+    }
+
+    @Override
+    public void setFrameListener() {
+        JFrame parent = (JFrame)SwingUtilities.getWindowAncestor(panel);
+        parent.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                chrono.detach(AnalogChrono.this);
+            }
+        });
+    }
 }

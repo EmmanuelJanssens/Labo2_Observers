@@ -27,8 +27,8 @@ public class DigitalChrono extends Observer {
         timeLabel = new JLabel("00h 00m 00s");
         panel.add(timeLabel);
 
-        frame.setContentPane(panel);
-        frame.setVisible(true);
+        //frame.setContentPane(panel);
+        //frame.setVisible(true);
 
         panel.addMouseListener(new MouseAdapter() {
             @Override
@@ -51,5 +51,21 @@ public class DigitalChrono extends Observer {
         timeLabel.setText(timeFormat.format(newChronoState.getHours()) + "h "
                 + timeFormat.format(newChronoState.getMinutes()) + "m "
                 + timeFormat.format(newChronoState.getSeconds()) + "s ");
+    }
+
+    public JPanel getPanel()
+    {
+        return panel;
+    }
+
+    @Override
+    public void setFrameListener() {
+        JFrame parent = (JFrame)SwingUtilities.getWindowAncestor(panel);
+        parent.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                chrono.detach(DigitalChrono.this);
+            }
+        });
     }
 }
