@@ -9,25 +9,24 @@ import java.awt.geom.Line2D;
 abstract public class AnalogChrono extends ChronoPanel {
 
     protected Image img;
-    private Graphics2D g2d;
 
     // Pointers end position (the moving position)
-    private int endXSecond = (int) getPreferredSize().getWidth()/2;
-    private int endYSecond = 40;
-    private int endXMinute = (int) getPreferredSize().getWidth()/2;
-    private int endYMinute = 65;
-    private int endXHour = (int) getPreferredSize().getWidth()/2;
-    private int endYHour = 81;
+    private int SECOND_POINTER_END_X = (int) getPreferredSize().getWidth()/2;
+    private int SECOND_POINTER_END_Y = 40;
+    private int MINUTE_POINTER_END_X = (int) getPreferredSize().getWidth()/2;
+    private int MINUTE_POINTER_END_Y = 65;
+    private int HOUR_POINTER_END_X = (int) getPreferredSize().getWidth()/2;
+    private int HOUR_POINTER_END_Y = 81;
 
     // Pointers line stroke width
-    private final int secondPointerWidth = 1;
-    private final int minutePointerWidth = 3;
-    private final int hourPointerWidth = 5;
+    private final int SECOND_POINTER_WIDTH = 1;
+    private final int MINUTE_POINTER_WIDTH = 3;
+    private final int HOUR_POINTER_WIDTH = 5;
 
-    // Pointer color
-    private final Color secondPointerColor = Color.RED;
-    private final Color minutePointerColor = Color.BLUE;
-    private final Color hourPointerColor = Color.BLACK;
+    // Pointers color
+    private final Color SECOND_POINTER_COLOR = Color.RED;
+    private final Color MINUTE_POINTER_COLOR = Color.BLUE;
+    private final Color HOUR_POINTER_COLOR = Color.BLACK;
 
     // Rotation angle of a unit
     private final double rotAngle = 6; // 360 / 60 = 6
@@ -41,39 +40,38 @@ abstract public class AnalogChrono extends ChronoPanel {
 
         super.paintComponent(g);
 
-        g2d = (Graphics2D) g;
-
         // draw background image from resources (images folder)
         int x = (this.getWidth() - img.getWidth(this)) / 2;
         int y = (this.getHeight() - img.getHeight(this)) / 2;
-        g2d.drawImage(img, x, y, this);
+        g.drawImage(img, 0, 0, this);
 
         // draw label name around the middle of the clock
-        g2d.drawString(getLabelName(), getWidth()/2, getHeight()/2);
+        g.drawString(getLabelName(), getWidth()/2, getHeight()/2);
 
         // TODO contrôler avec switchState pour update ou pas les pointers
-        // moved second pointer
-        drawPointer(getChrono().getSeconds(), secondPointerWidth,secondPointerColor, endXSecond, endYSecond);
-        // moved minute pointer
-        drawPointer(getChrono().getMinutes(), minutePointerWidth, minutePointerColor, endXMinute, endYMinute);
-        // moved hour pointer
-        drawPointer(getChrono().getHours(), hourPointerWidth, hourPointerColor, endXHour, endYHour);
+
+        drawPointer((Graphics2D) g, getChrono().getSeconds(), SECOND_POINTER_WIDTH, SECOND_POINTER_COLOR,
+                SECOND_POINTER_END_X, SECOND_POINTER_END_Y);
+        drawPointer((Graphics2D) g, getChrono().getMinutes(), MINUTE_POINTER_WIDTH, MINUTE_POINTER_COLOR,
+                MINUTE_POINTER_END_X, MINUTE_POINTER_END_Y);
+        drawPointer((Graphics2D) g, getChrono().getHours(), HOUR_POINTER_WIDTH, HOUR_POINTER_COLOR,
+                HOUR_POINTER_END_X, HOUR_POINTER_END_Y);
 
     }
 
     // draw updated pointer(), used for each pointer
-    private void drawPointer(long chronoValue, float pointerWidth, Color pointerColor, float pointerEndX, float pointerEndY){
+    private void drawPointer(Graphics2D g2d, long chronoValue, float pointerWidth, Color pointerColor,
+                             float pointerEndX, float pointerEndY){
+
+        g2d.setStroke(new BasicStroke(pointerWidth));
+        g2d.setColor(pointerColor);
+
         Line2D pointerLine = new Line2D.Float(this.getWidth()/2f, this.getHeight()/2f, pointerEndX, pointerEndY);
         AffineTransform atSecond =
                 AffineTransform.getRotateInstance(
                         Math.toRadians(rotAngle * chronoValue),
                         pointerLine.getX1(), pointerLine.getY1());
-
-        g2d.setStroke(new BasicStroke(pointerWidth));
-        g2d.setColor(pointerColor);
         g2d.draw(atSecond.createTransformedShape(pointerLine));
-
-        // g2d.drawLine((int) getPreferredSize().getWidth()/2, (int) getPreferredSize().getHeight()/2, pointerEndX, pointerEndY);
     }
 
     @Override
