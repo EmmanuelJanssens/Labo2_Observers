@@ -1,5 +1,6 @@
 /**
- * Subject that has to be listened to
+ * Abstract subject that has to be observed
+ * from the Observer pattern
  *
  * @author Emmanuel Janssens
  * @author Rosalie Chhen
@@ -15,13 +16,13 @@ import java.util.LinkedList;
 
 abstract public class Subject {
 
-    /**
-     * List of observers
-     */
-    LinkedList<Observer> observers = new LinkedList<>();
+    // List of observers attached to the subject
+    private final LinkedList<Observer> observers = new LinkedList<>();
 
     /**
-     * start listening to the subject,Attach a observer to the subject
+     * Attach an observer to the subject
+     * The observer starts to wait for notification from the subject
+     *
      * @param o observer to attach
      */
     public void attach(ChronoPanel o){
@@ -30,18 +31,20 @@ abstract public class Subject {
     }
 
     /**
-     * Stop listening to the subject, remove it from the list of the observers
-     * @param o
+     * Remove an observer from the list of observers
+     * The subject stop to notify the observer
+     *
+     * @param o observer to remove
      */
     public void detach(Observer o){
         observers.remove(o);
     }
 
     /**
-     * Notify all subscribed obvservers when this function is called
-     * mainly when the data of the subject has changed
+     * Notify all subscribed observers
+     * This method is called when the data of the subject has changed
      */
-    public void notifie(){
+    void notifie(){
         for(Observer o : observers){
             o.update();
         }

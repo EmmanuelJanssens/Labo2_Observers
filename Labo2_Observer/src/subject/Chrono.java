@@ -1,11 +1,17 @@
 /**
- * Main subject of the work
- * Basic timer that increments every 1000 ms
+ * This class represents the concrete subject of a chronometer
+ * from the Observer pattern
  *
- * Has basi action for a chronometer such as
- *  start
- *  stop
- *  reset
+ * It contains a basic timer that increments every 1000 ms
+ * and has basic actions for a chronometer such as
+ *  - start
+ *  - stop
+ *  - reset
+ *
+ * @author Emmanuel Janssens
+ * @author Rosalie Chhen
+ *
+ * @date 21.04.2021
  */
 package subject;
 
@@ -14,8 +20,12 @@ import java.util.TimerTask;
 
 public class Chrono extends Subject {
 
-    long seconds = 0;
-    boolean isRunning = false;
+    // Represents the data of the concrete subject :
+    // the total seconds spent by the chronometer running
+    private long seconds = 0;
+
+
+    private boolean isRunning = false;
     private Timer timer;
 
     /**
@@ -23,14 +33,11 @@ public class Chrono extends Subject {
      */
     public Chrono(){
 
-
-        // Toute les secondes, on augmente d'une seconde et on notifie les observeurs
         timer = new Timer();
-
     }
 
     /**
-     * switch between states mainly to stop or start a timer
+     * Switch between states mainly to stop or start a timer
      */
     public void switchState() {
         if(isRunning)
@@ -40,14 +47,14 @@ public class Chrono extends Subject {
     }
 
     /**
-     * starts a timer, uses the Timertask to run continuously at a fixed rate
+     * Starts a timer, uses the Timertask to run continuously at a fixed rate
      */
     public void start() {
         if(!isRunning)
             timer.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
-                    Chrono.this.setSeconds(Chrono.this.getSeconds() + 1);
+                    Chrono.this.setSeconds(Chrono.this.seconds + 1);
                 }
             },0,1000);
         isRunning = true;
@@ -66,7 +73,7 @@ public class Chrono extends Subject {
     }
 
     /**
-     * Reset the timers
+     * Reset the timer
      * Stop TimerTask and set seconds to 0
      */
     public void reset() {
@@ -77,17 +84,16 @@ public class Chrono extends Subject {
     /**
      * Mutator for seconds, changes the data of the chronometer
      * so we must notify all observers
-     * @param s
+     * @param s the new value for seconds
      */
-    public void setSeconds(long s)
-    {
+    private void setSeconds(long s) {
         seconds = s;
         notifie();
     }
 
     /**
-     * Formats data to seconds
-     * @return
+     * Formats data to seconds for a chronometer
+     * @return seconds
      */
     public long getSeconds()
     {
@@ -95,7 +101,7 @@ public class Chrono extends Subject {
     }
 
     /**
-     * formats data to minutes
+     * Formats data to minutes for a chronometer
      * @return minutes
      */
     public long getMinutes()
@@ -104,7 +110,7 @@ public class Chrono extends Subject {
     }
 
     /**
-     * formats data to hours
+     * formats data to hours for a chronometer
      * @return hours
      */
     public long getHours()
@@ -112,12 +118,4 @@ public class Chrono extends Subject {
         return seconds/3600;
     }
 
-    /**
-     * to check if the timer is running
-     * @return
-     */
-    public boolean IsRunning()
-    {
-        return isRunning;
-    }
 }
