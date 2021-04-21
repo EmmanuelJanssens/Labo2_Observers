@@ -4,8 +4,6 @@ import subject.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
 
 public class DigitalChrono extends ChronoPanel {
@@ -24,8 +22,8 @@ public class DigitalChrono extends ChronoPanel {
 
     @Override
     public void update() {
-        timeLabel.setText(timeFormat.format(chrono.getHours()) + "h "
-                + timeFormat.format(chrono.getMinutes()) + "m "
-                + timeFormat.format(chrono.getSeconds()) + "s ");
+        timeLabel.setText(timeFormat.format(getChrono().getHours()) + "h "
+                + timeFormat.format(getChrono().getMinutes()) + "m "
+                + timeFormat.format(getChrono().getSeconds()) + "s ");
     }
 }

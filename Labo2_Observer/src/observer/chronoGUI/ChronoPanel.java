@@ -8,11 +8,11 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class ChronoPanel extends JPanel implements Observer {
-    protected String labelName; // = labelName is : Chrono#id
-    //protected JFrame frame;
-    protected final Dimension dimension = new Dimension(200,200);
-    protected Chrono chrono; // possede ref sur sujet concret
+abstract public class ChronoPanel extends JPanel implements Observer {
+
+    private Chrono chrono; // possede ref sur sujet concret
+    private String labelName; // = labelName is : Chrono#id
+    private final Dimension dimension = new Dimension(200,200);
 
     protected ChronoPanel(Chrono chrono,String labelName){
         this.labelName = labelName;
@@ -31,12 +31,20 @@ public class ChronoPanel extends JPanel implements Observer {
 
     }
 
-
-
-    @Override
-    public void update() {
-
+    protected Chrono getChrono() {
+        return chrono;
     }
+
+    protected String getLabelName() {
+        return labelName;
+    }
+
+    /*
+    @Override
+    public Dimension getPreferredSize(){
+        return dimension;
+    }*/
+
     public void setFrameListener() {
         JFrame parent = (JFrame)SwingUtilities.getWindowAncestor(this);
         parent.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -46,5 +54,4 @@ public class ChronoPanel extends JPanel implements Observer {
             }
         });
     }
-
 }
