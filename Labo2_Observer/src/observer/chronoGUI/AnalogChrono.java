@@ -6,18 +6,18 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 
-public class AnalogChrono extends ChronoPanel {
+abstract public class AnalogChrono extends ChronoPanel {
 
     protected Image img;
     private Graphics2D g2d;
 
     // Pointers end position (the moving position)
-    private float endXSecond = 108;
-    private float endYSecond = 40; // 106.5 - 50
-    private float endXMinute = 108;
-    private float endYMinute = 65f; // 106.5 - 50
-    private float endXHour = 108;
-    private float endYHour = 81.5f; // 106.5 - 25
+    private int endXSecond = (int) getPreferredSize().getWidth()/2;
+    private int endYSecond = 40;
+    private int endXMinute = (int) getPreferredSize().getWidth()/2;
+    private int endYMinute = 65;
+    private int endXHour = (int) getPreferredSize().getWidth()/2;
+    private int endYHour = 81;
 
     // Pointers line stroke width
     private final int secondPointerWidth = 1;
@@ -55,12 +55,13 @@ public class AnalogChrono extends ChronoPanel {
 
         drawBackground(g); // image + label
 
+        // TODO contrôler avec switchState pour update ou pas les pointers
         // moved second pointer
-        drawUpdatedPointer(chrono.getSeconds(), secondPointerWidth,secondPointerColor, endXSecond, endYSecond);
+        drawPointer(getChrono().getSeconds(), secondPointerWidth,secondPointerColor, endXSecond, endYSecond);
         // moved minute pointer
-        drawUpdatedPointer(chrono.getMinutes(), minutePointerWidth, minutePointerColor, endXMinute, endYMinute);
+        drawPointer(getChrono().getMinutes(), minutePointerWidth, minutePointerColor, endXMinute, endYMinute);
         // moved hour pointer
-        drawUpdatedPointer(chrono.getHours(), hourPointerWidth, hourPointerColor, endXHour, endYHour);
+        drawPointer(getChrono().getHours(), hourPointerWidth, hourPointerColor, endXHour, endYHour);
     }
 
     // draw image + label
@@ -74,19 +75,19 @@ public class AnalogChrono extends ChronoPanel {
         g2d.drawImage(img, x, y, this);
 
         // draw label name around the middle of the clock
-        g2d.drawString(labelName, dimension.width/2, dimension.height/2);
+        g2d.drawString(getLabelName(), getWidth()/2, getHeight()/2);
 
     }
 
     // draw default pointer (before starting chrono), used for each pointer
-    private void drawDefaultPointer(float pointerWidth, Color pointerColor, float pointerEndX, float pointerEndY){
+    private void drawDefaultPointer(int pointerWidth, Color pointerColor, int pointerEndX, int pointerEndY){
         g2d.setStroke(new BasicStroke(pointerWidth));
         g2d.setColor(pointerColor);
-        g2d.draw(new Line2D.Float(this.getWidth()/2f, this.getHeight()/2f, pointerEndX, pointerEndY));
+        g2d.drawLine((int) getPreferredSize().getWidth()/2, (int) getPreferredSize().getHeight()/2, pointerEndX, pointerEndY);
     }
 
     // draw updated pointer(), used for each pointer
-    private void drawUpdatedPointer(long chronoValue, float pointerWidth, Color pointerColor, float pointerEndX, float pointerEndY){
+    private void drawPointer(long chronoValue, float pointerWidth, Color pointerColor, float pointerEndX, float pointerEndY){
         Line2D pointerLine = new Line2D.Float(this.getWidth()/2f, this.getHeight()/2f, pointerEndX, pointerEndY);
         AffineTransform atSecond =
                 AffineTransform.getRotateInstance(
