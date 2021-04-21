@@ -41,32 +41,6 @@ abstract public class AnalogChrono extends ChronoPanel {
 
         super.paintComponent(g);
 
-        drawBackground(g); // image + label
-
-        // Seconds pointer
-        drawDefaultPointer(secondPointerWidth, secondPointerColor, endXSecond, endYSecond);
-        // Minutes pointer
-        drawDefaultPointer(minutePointerWidth, minutePointerColor, endXMinute, endYMinute);
-        // Hour pointer
-        drawDefaultPointer(hourPointerWidth, hourPointerColor, endXHour, endYHour);
-    }
-
-    public void updatePointers(Graphics g ){
-
-        drawBackground(g); // image + label
-
-        // TODO contrôler avec switchState pour update ou pas les pointers
-        // moved second pointer
-        drawPointer(getChrono().getSeconds(), secondPointerWidth,secondPointerColor, endXSecond, endYSecond);
-        // moved minute pointer
-        drawPointer(getChrono().getMinutes(), minutePointerWidth, minutePointerColor, endXMinute, endYMinute);
-        // moved hour pointer
-        drawPointer(getChrono().getHours(), hourPointerWidth, hourPointerColor, endXHour, endYHour);
-    }
-
-    // draw image + label
-    private void drawBackground(Graphics g){
-
         g2d = (Graphics2D) g;
 
         // draw background image from resources (images folder)
@@ -77,13 +51,14 @@ abstract public class AnalogChrono extends ChronoPanel {
         // draw label name around the middle of the clock
         g2d.drawString(getLabelName(), getWidth()/2, getHeight()/2);
 
-    }
+        // TODO contrôler avec switchState pour update ou pas les pointers
+        // moved second pointer
+        drawPointer(getChrono().getSeconds(), secondPointerWidth,secondPointerColor, endXSecond, endYSecond);
+        // moved minute pointer
+        drawPointer(getChrono().getMinutes(), minutePointerWidth, minutePointerColor, endXMinute, endYMinute);
+        // moved hour pointer
+        drawPointer(getChrono().getHours(), hourPointerWidth, hourPointerColor, endXHour, endYHour);
 
-    // draw default pointer (before starting chrono), used for each pointer
-    private void drawDefaultPointer(int pointerWidth, Color pointerColor, int pointerEndX, int pointerEndY){
-        g2d.setStroke(new BasicStroke(pointerWidth));
-        g2d.setColor(pointerColor);
-        g2d.drawLine((int) getPreferredSize().getWidth()/2, (int) getPreferredSize().getHeight()/2, pointerEndX, pointerEndY);
     }
 
     // draw updated pointer(), used for each pointer
@@ -97,11 +72,13 @@ abstract public class AnalogChrono extends ChronoPanel {
         g2d.setStroke(new BasicStroke(pointerWidth));
         g2d.setColor(pointerColor);
         g2d.draw(atSecond.createTransformedShape(pointerLine));
+
+        // g2d.drawLine((int) getPreferredSize().getWidth()/2, (int) getPreferredSize().getHeight()/2, pointerEndX, pointerEndY);
     }
 
     @Override
     public void update() {
-        updatePointers(getGraphics());
+        paintComponent(getGraphics());
     }
 
 }
