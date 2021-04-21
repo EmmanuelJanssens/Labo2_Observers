@@ -26,5 +26,6 @@ public class RomanChrono extends AnalogChrono{
     @Override
     public void update() {
         paintComponent(getGraphics());
+
     }
 }

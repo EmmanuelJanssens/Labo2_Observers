@@ -11,7 +11,7 @@ public class ArabChrono extends AnalogChrono{
     private Image img;
     private final static String IMG_FILEPATH = "images/cadran_chiffres_arabes.jpg";
 
-    public ArabChrono(Chrono chrono, String name ) {
+    public ArabChrono(Chrono chrono, String name) {
         super(chrono, name);
         img = Toolkit.getDefaultToolkit().getImage(IMG_FILEPATH).getScaledInstance(getPreferredSize().width, getPreferredSize().height, Image.SCALE_DEFAULT);
     }
@@ -26,5 +26,6 @@ public class ArabChrono extends AnalogChrono{
     @Override
     public void update() {
         paintComponent(getGraphics());
+
     }
 }
