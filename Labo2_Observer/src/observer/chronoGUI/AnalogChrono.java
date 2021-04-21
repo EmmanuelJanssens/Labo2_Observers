@@ -51,16 +51,16 @@ public class AnalogChrono extends ChronoPanel {
         drawDefaultPointer(hourPointerWidth, hourPointerColor, endXHour, endYHour);
     }
 
-    public void updatePointers(Graphics g, ChronoData chronoState){
+    public void updatePointers(Graphics g ){
 
         drawBackground(g); // image + label
 
         // moved second pointer
-        drawUpdatedPointer(chronoState.getSeconds(), secondPointerWidth,secondPointerColor, endXSecond, endYSecond);
+        drawUpdatedPointer(chrono.getSeconds(), secondPointerWidth,secondPointerColor, endXSecond, endYSecond);
         // moved minute pointer
-        drawUpdatedPointer(chronoState.getMinutes(), minutePointerWidth, minutePointerColor, endXMinute, endYMinute);
+        drawUpdatedPointer(chrono.getMinutes(), minutePointerWidth, minutePointerColor, endXMinute, endYMinute);
         // moved hour pointer
-        drawUpdatedPointer(chronoState.getHours(), hourPointerWidth, hourPointerColor, endXHour, endYHour);
+        drawUpdatedPointer(chrono.getHours(), hourPointerWidth, hourPointerColor, endXHour, endYHour);
     }
 
     // draw image + label
@@ -100,10 +100,7 @@ public class AnalogChrono extends ChronoPanel {
 
     @Override
     public void update() {
-        updatePointers(getGraphics(), chrono.getChronoData());
+        updatePointers(getGraphics());
     }
-
-
-
 
 }

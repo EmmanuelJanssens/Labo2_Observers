@@ -2,7 +2,6 @@ package observer.chronoGUI;
 
 import observer.Observer;
 import subject.Chrono;
-import subject.State;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,11 +22,7 @@ public class ChronoPanel extends JPanel implements Observer {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                if(chrono.getChronoData().getCurrentState() == State.PAUSED || chrono.getChronoData().getCurrentState() == State.RESET){
-                    chrono.setChronoData(State.RUNNING);
-                } else { // currentState == State.RUNNING
-                    chrono.setChronoData(State.PAUSED);
-                }
+                chrono.switchState();
             }
         });
 

@@ -10,7 +10,6 @@ import java.text.DecimalFormat;
 
 public class DigitalChrono extends ChronoPanel {
 
-    private Chrono chrono; // possede ref sur sujet concret (class Subject ici ou Chrono?)
     private JLabel timeLabel;
     private final DecimalFormat timeFormat = new DecimalFormat("00");
 
@@ -25,9 +24,8 @@ public class DigitalChrono extends ChronoPanel {
 
     @Override
     public void update() {
-        ChronoData newChronoState = chrono.getChronoData();
-        timeLabel.setText(timeFormat.format(newChronoState.getHours()) + "h "
-                + timeFormat.format(newChronoState.getMinutes()) + "m "
-                + timeFormat.format(newChronoState.getSeconds()) + "s ");
+        timeLabel.setText(timeFormat.format(chrono.getHours()) + "h "
+                + timeFormat.format(chrono.getMinutes()) + "m "
+                + timeFormat.format(chrono.getSeconds()) + "s ");
     }
 }

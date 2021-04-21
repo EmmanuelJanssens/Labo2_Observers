@@ -96,28 +96,28 @@ public class ControlPanel
         mainPanel.add(createButton("Démarrer", new Action() {
             @Override
             public void Do() {
-                subject.setChronoData(State.RUNNING);
+                subject.start();
             }
         }));
 
         mainPanel.add(createButton("Arreter", new Action() {
             @Override
             public void Do() {
-                subject.setChronoData(State.PAUSED);
+                subject.stop();
             }
         }));
 
         mainPanel.add(createButton("Réinitialiser", new Action() {
             @Override
             public void Do() {
-                subject.setChronoData(State.RESET);
+                subject.reset();
             }
         }));
 
 
         createRoman("Cadran Romain",subject,id);
-        createArab("Cadran Romain",subject,id);
-        createDigital("Cadran Romain",subject,id);
+        createArab("Cadran Arabe",subject,id);
+        createDigital("Digital",subject,id);
 
     }
 
@@ -150,21 +150,21 @@ public class ControlPanel
         mainPanel.add(createButton("Cadran romain", new Action() {
             @Override
             public void Do() {
-                List<AnalogChrono> chrono = new LinkedList<>();
+                List<RomanChrono> chrono = new LinkedList<>();
                 for(int i = 0; i < subjets.size(); i++) {
                     chrono.add( new RomanChrono((Chrono) subjets.get(i), "Chrono #" + i));
                 }
-                createChronoWindow("Cadran romain",  chrono.toArray(new AnalogChrono[chrono.size()]));
+                createChronoWindow("Cadran romain",  chrono.toArray(new RomanChrono[chrono.size()]));
             }
         }));
         mainPanel.add(createButton("Cadran arabe", new Action() {
             @Override
             public void Do() {
-                List<AnalogChrono> chrono = new LinkedList<>();
+                List<ArabChrono> chrono = new LinkedList<>();
                 for(int i = 0; i < subjets.size(); i++){
                     chrono.add( new ArabChrono((Chrono) subjets.get(i), "Chrono #" + i));
                 }
-                createChronoWindow("Cadran arabe", chrono.toArray(new AnalogChrono[chrono.size()]));
+                createChronoWindow("Cadran arabe", chrono.toArray(new ArabChrono[chrono.size()]));
             }
         }));
         mainPanel.add(createButton("Numérique", new Action() {
