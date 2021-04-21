@@ -39,11 +39,6 @@ abstract public class ChronoPanel extends JPanel implements Observer {
         return labelName;
     }
 
-    /*
-    @Override
-    public Dimension getPreferredSize(){
-        return dimension;
-    }*/
 
     public void setFrameListener() {
         JFrame parent = (JFrame)SwingUtilities.getWindowAncestor(this);
