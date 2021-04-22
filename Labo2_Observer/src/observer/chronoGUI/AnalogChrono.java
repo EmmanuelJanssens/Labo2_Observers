@@ -32,16 +32,21 @@ abstract class AnalogChrono extends ChronoPanel {
         private int pointerEndX;
         private int pointerEndY;
 
-        // Thickness of the the pointer's stroke line
+        // Thickness of the pointer line stroke
         private int weight;
 
         // Color of the pointer
         private Color color;
 
         /**
-         * Constructor
+         * Constructor create a pointer
+         *
+         * @param pointerEndY pointer end x position
+         * @param pointerEndX pointer end y position
+         * @param c Color of the pointer
+         * @param w Thickness of the pointer's stroke line
          * */
-        Pointer(int pointerEndX, int pointerEndY, int w, Color c) {
+        private Pointer(int pointerEndX, int pointerEndY, int w, Color c) {
             this.pointerEndX = pointerEndX;
             this.pointerEndY = pointerEndY;
             weight = w;
@@ -65,10 +70,9 @@ abstract class AnalogChrono extends ChronoPanel {
      * Constructor
      *
      * @param chrono the Chrono subject to observe
-     * @param name the chronometer's label name to display
      * */
-    protected AnalogChrono(Chrono chrono, String name){
-        super(chrono,name);
+    protected AnalogChrono(Chrono chrono){
+        super(chrono);
     }
 
     /**
@@ -79,14 +83,14 @@ abstract class AnalogChrono extends ChronoPanel {
     protected void drawPointersAndLabel(Graphics g){
 
         // Draw the chronometer's label name
-        g.drawString(getLabelName(), LABEL_POS_X, LABEL_POS_Y);
+        g.drawString(getText(), LABEL_POS_X, LABEL_POS_Y);
 
         // Draw the pointers
-        drawPointer((Graphics2D) g, getChrono().getSeconds(), SECONDS.weight, SECONDS.color,
+        drawPointer((Graphics2D) g, getSeconds(), SECONDS.weight, SECONDS.color,
                 SECONDS.pointerEndX, SECONDS.pointerEndY);
-        drawPointer((Graphics2D) g, getChrono().getMinutes(), MINUTES.weight, MINUTES.color,
+        drawPointer((Graphics2D) g, getMinutes(), MINUTES.weight, MINUTES.color,
                 MINUTES.pointerEndX, MINUTES.pointerEndY);
-        drawPointer((Graphics2D) g, getChrono().getHours() * 5, HOURS.weight, HOURS.color,
+        drawPointer((Graphics2D) g, getHours() * 5, HOURS.weight, HOURS.color,
                 HOURS.pointerEndX, HOURS.pointerEndY);
     }
 
@@ -95,10 +99,10 @@ abstract class AnalogChrono extends ChronoPanel {
      *
      * @param g2d the Graphics2D of the panel where is drawn the elements
      * @param chronoValue the number of seconds/minutes/hours spent by the subject chronometer running
-     * @param pointerColor the color of teh pointer
-     * @param pointerEndX the pointer's end x position
-     * @param pointerEndY the pointer's end y position
-     * @param pointerWeight the thickness of the pointer's stroke line
+     * @param pointerColor the color of the pointer
+     * @param pointerEndX the pointer end x position
+     * @param pointerEndY the pointer end y position
+     * @param pointerWeight the thickness of the pointer line stroke
      * */
     private void drawPointer(Graphics2D g2d, long chronoValue, float pointerWeight, Color pointerColor,
                                float pointerEndX, float pointerEndY){

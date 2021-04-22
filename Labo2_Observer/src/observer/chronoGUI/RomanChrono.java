@@ -25,22 +25,22 @@ public class RomanChrono extends AnalogChrono{
     private Image img;
 
     // Pathfile to the background image
-    private final static String IMG_FILEPATH = "images/cadran_chiffres_romains.jpg";
+    private final static String IMG_FILEPATH = "assets/cadran_chiffres_romains.jpg";
 
     /**
      * Constructor getting the background image from the assets folder
      *
      * @param chrono the Chrono subject to observe
-     * @param name the label name of the chronometer to display
      * */
-    public RomanChrono(Chrono chrono, String name) {
-        super(chrono, name);
-        img = Toolkit.getDefaultToolkit().getImage(IMG_FILEPATH).getScaledInstance(getPreferredSize().width,getPreferredSize().height, Image.SCALE_DEFAULT);
+    public RomanChrono(Chrono chrono) {
+        super(chrono);
+        img = Toolkit.getDefaultToolkit().getImage(IMG_FILEPATH).getScaledInstance(getPreferredSize().width,
+                getPreferredSize().height, Image.SCALE_DEFAULT);
     }
 
     /**
      * paintComponent method from JComponent overriden
-     * to draw the background image, the label name of the chronometer
+     * to draw the background image, the text (name + value) of the chronometer
      * and the pointers
      *
      * @param g Graphics of the JPanel used to draw on

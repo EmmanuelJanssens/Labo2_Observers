@@ -1,6 +1,7 @@
 /**
- * Abstract subject that has to be observed
- * from the Observer pattern
+ * Abstract subject class from the Observer pattern
+ * It contains the basic implementations of a subject:
+ * attach, detach and notify an observer methods
  *
  * @author Emmanuel Janssens
  * @author Rosalie Chhen

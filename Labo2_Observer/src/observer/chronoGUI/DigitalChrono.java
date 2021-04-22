@@ -23,21 +23,22 @@ public class DigitalChrono extends ChronoPanel {
     private JLabel timeLabel;
 
     // Format String to display digits
-    private final DecimalFormat TIME_FORMAT = new DecimalFormat("00");
+    private final static DecimalFormat TIME_FORMAT = new DecimalFormat("00");
 
     /**
-     * Constructor
+     * Constructor create a digital chrono observer
      *
      * @param chrono the Chrono subject to observe
-     * @param name the label name of the chronometer to display
      */
-    public DigitalChrono(Chrono chrono, String name){
+    public DigitalChrono(Chrono chrono){
 
-        super(chrono,name);
+        super(chrono);
+
+        // To center element
         setLayout(new GridBagLayout());
 
-        // Add the chronometer's label name on the panel
-        add(new JLabel(name + ": "));
+        // Add the chronometer text (name + value) on the panel
+        add(new JLabel(getText() + ": "));
 
         // Initialize the label used to display the time
         timeLabel = new JLabel();
@@ -46,17 +47,7 @@ public class DigitalChrono extends ChronoPanel {
     }
 
     /**
-     * Definition of the update method from the Observer interface
-     * This method is called when the subject chrono notify its observers
-     * It updates the display of this digital chronometer GUI
-     * */
-    @Override
-    public void update() {
-        setTimeLabel(getChrono().getHours(), getChrono().getMinutes(), getChrono().getSeconds());
-    }
-
-    /**
-     * Set the time displayed on the label responsible of this
+     * Set the time displayed on the responsible label
      *
      * @param hour number of hour to set
      * @param minute number of minutes to set
@@ -66,5 +57,15 @@ public class DigitalChrono extends ChronoPanel {
         timeLabel.setText(TIME_FORMAT.format(hour) + "h "
                 + TIME_FORMAT.format(minute) + "m "
                 + TIME_FORMAT.format(second) + "s ");
+    }
+
+    /**
+     * Definition of the update method from the Observer interface
+     * This method is called when the subject chrono notify its observers
+     * It updates the display of this digital chronometer GUI
+     * */
+    @Override
+    public void update() {
+        setTimeLabel(getHours(), getMinutes(), getSeconds());
     }
 }

@@ -27,22 +27,23 @@ abstract public class ChronoPanel extends JPanel implements Observer {
     // Concrete subject to observe
     private Chrono chrono;
 
-    // Represents label displayed on the middle of the panel (Chrono#id)
-    private String labelName;
-
     // Dimension of the panel
-    private final Dimension dimension = new Dimension(200,200);
+    private final Dimension DIMENSION = new Dimension(200,200);
 
     /**
      * Constructor
      *
      * @param chrono the Chrono subject to observe
-     * @param labelName the label name of the chronometer to display
      * */
-    protected ChronoPanel(Chrono chrono, String labelName){
-        this.labelName = labelName;
+    protected ChronoPanel(Chrono chrono){
 
-        setPreferredSize(new Dimension(200,200));
+        this.chrono = chrono;
+
+        // When an observer is created,
+        // it subscribes the current observer to a subject
+        chrono.attach(this);
+
+        setPreferredSize(DIMENSION);
 
         // When the user clicks on the panel of a chronometer,
         // it stop the timer if it was running and vice-versa
@@ -52,30 +53,44 @@ abstract public class ChronoPanel extends JPanel implements Observer {
                 chrono.switchState();
             }
         });
-
-        this.chrono = chrono;
-
-        // When an observer is created,
-        // it subscribes the current observer to a subject
-        chrono.attach(this);
     }
 
     /**
-     * Getter for the subject chrono
+     * Formats data to seconds for a chronometer
      *
-     * @return a Chrono the subject attached to the current observer
-     * */
-    protected Chrono getChrono() {
-        return chrono;
+     * @return minutes
+     */
+    protected int getSeconds(){
+        return (chrono.getSecondsData()%3600) % 60;
     }
 
     /**
-     * Getter for the label to display
+     * Formats data to minutes for a chronometer
      *
-     * @return a String the label name
-     * */
-    protected String getLabelName() {
-        return labelName;
+     * @return minutes
+     */
+    protected int getMinutes()
+    {
+        return (chrono.getSecondsData()%3600) / 60;
+    }
+
+    /**
+     * Formats data to hours for a chronometer
+     *
+     * @return hours
+     */
+    protected int getHours()
+    {
+        return chrono.getSecondsData()/3600;
+    }
+
+    /**
+     * Getter for the text to display around the middle of the chronometer GUI
+     *
+     * @return a String the text to display
+     **/
+    protected String getText() {
+        return "Chrono #" + chrono.getId();
     }
 
     /**

@@ -21,18 +21,21 @@ import java.util.TimerTask;
 public class Chrono extends Subject {
 
     // Represents the data of the concrete subject :
-    // the total seconds spent by the chronometer running
-    private long seconds = 0;
+    // the total number of seconds spent by the chronometer running
+    private int seconds = 0;
 
+    // The Chrono subject id updated by the counter
+    private int id;
+    private static int counter;
 
-    private boolean isRunning = false;
     private Timer timer;
+    private boolean isRunning = false;
 
     /**
      * Contructor creates a new timer
      */
     public Chrono(){
-
+        id = ++counter;
         timer = new Timer();
     }
 
@@ -54,7 +57,7 @@ public class Chrono extends Subject {
             timer.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
-                    Chrono.this.setSeconds(Chrono.this.seconds + 1);
+                    Chrono.this.setSecondsData(Chrono.this.seconds + 1);
                 }
             },0,1000);
         isRunning = true;
@@ -78,7 +81,7 @@ public class Chrono extends Subject {
      */
     public void reset() {
         stop();
-        setSeconds(0);
+        setSecondsData(0);
     }
 
     /**
@@ -86,36 +89,28 @@ public class Chrono extends Subject {
      * so we must notify all observers
      * @param s the new value for seconds
      */
-    private void setSeconds(long s) {
+    private void setSecondsData(int s) {
         seconds = s;
         notifie();
     }
 
     /**
-     * Formats data to seconds for a chronometer
-     * @return seconds
+     * Getter for the data seconds
+     *
+     * @return an int the total number of seconds spent by the chronometer running
      */
-    public long getSeconds()
+    public int getSecondsData()
     {
-        return (seconds%3600) % 60;
+        return seconds;
     }
 
     /**
-     * Formats data to minutes for a chronometer
-     * @return minutes
-     */
-    public long getMinutes()
-    {
-        return (seconds%3600) / 60;
-    }
-
-    /**
-     * formats data to hours for a chronometer
-     * @return hours
-     */
-    public long getHours()
-    {
-        return seconds/3600;
+     * Getter for the subject id
+     *
+     * @return an int the chronometer's id
+     * */
+    public int getId(){
+        return id;
     }
 
 }
