@@ -5,46 +5,46 @@
       <source>60903</source>
       <target>57021</target>
     </dependency>
-    <inheritance id="57172">
-      <child>54604</child>
-      <parent>57171</parent>
-    </inheritance>
-    <inheritance id="57154">
-      <child>54604</child>
-      <parent>57088</parent>
-    </inheritance>
-    <inheritance id="55449" innerClass="true">
-      <child>55448</child>
+    <inheritance id="70788">
+      <child>51709</child>
       <parent>54697</parent>
-    </inheritance>
-    <inheritance id="51711">
-      <child>51710</child>
-      <parent>51702</parent>
-    </inheritance>
-    <inheritance id="70785">
-      <child>54697</child>
-      <parent>54604</parent>
-    </inheritance>
-    <inheritance id="70786">
-      <child>51708</child>
-      <parent>54604</parent>
     </inheritance>
     <inheritance id="70787">
       <child>51707</child>
       <parent>54697</parent>
     </inheritance>
-    <inheritance id="70788">
-      <child>51709</child>
+    <inheritance id="70786">
+      <child>51708</child>
+      <parent>54604</parent>
+    </inheritance>
+    <inheritance id="70785">
+      <child>54697</child>
+      <parent>54604</parent>
+    </inheritance>
+    <inheritance id="51711">
+      <child>51710</child>
+      <parent>51702</parent>
+    </inheritance>
+    <inheritance id="55449" innerClass="true">
+      <child>55448</child>
       <parent>54697</parent>
     </inheritance>
-    <association aggregation="NONE" direction="SECOND_TO_FIRST" id="57207" name="observes">
-      <role componentId="51710" name="" visibility="PRIVATE">
+    <inheritance id="57154">
+      <child>54604</child>
+      <parent>57088</parent>
+    </inheritance>
+    <inheritance id="57172">
+      <child>54604</child>
+      <parent>57171</parent>
+    </inheritance>
+    <association aggregation="NONE" direction="FIRST_TO_SECOND" id="57139" name="notifies">
+      <role componentId="51702" name="" visibility="PRIVATE">
         <multiplicity>
           <min>1</min>
           <max>1</max>
         </multiplicity>
       </role>
-      <role componentId="54604" name="" visibility="PRIVATE">
+      <role componentId="57088" name="" visibility="PRIVATE">
         <multiplicity>
           <min>2147483647</min>
           <max>2147483647</max>
@@ -65,23 +65,125 @@
         </multiplicity>
       </role>
     </association>
-    <association aggregation="NONE" direction="FIRST_TO_SECOND" id="57139" name="notifies">
-      <role componentId="51702" name="" visibility="PRIVATE">
+    <association aggregation="NONE" direction="SECOND_TO_FIRST" id="57207" name="observes">
+      <role componentId="51710" name="" visibility="PRIVATE">
         <multiplicity>
           <min>1</min>
           <max>1</max>
         </multiplicity>
       </role>
-      <role componentId="57088" name="" visibility="PRIVATE">
+      <role componentId="54604" name="" visibility="PRIVATE">
         <multiplicity>
           <min>2147483647</min>
           <max>2147483647</max>
         </multiplicity>
       </role>
     </association>
-    <entity entityType="CLASS" id="57171" isAbstract="false" name="JPanel" visibility="PUBLIC"/>
-    <entity entityType="INTERFACE" id="57088" isAbstract="true" name="Observer" visibility="PUBLIC">
-      <method isAbstract="true" isStatic="false" name="update" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+    <entity entityType="CLASS" id="60903" isAbstract="false" name="App" visibility="PUBLIC">
+      <method isAbstract="false" isStatic="true" name="main" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="args" type="String[]"/>
+      </method>
+    </entity>
+    <entity entityType="CLASS" id="51710" isAbstract="false" name="Chrono" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="seconds" type="int" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="id" type="int" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="true" name="counter" type="int" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="timer" type="Timer" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="isRunning" type="boolean" visibility="PRIVATE"/>
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="Chrono" returnType="" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="getSecondsData" returnType="int" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="setSecondsData" returnType="void" view="DEFAULT" visibility="PRIVATE">
+        <variable const="false" name="s" type="int"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="getId" returnType="int" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="start" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="stop" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="reset" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+      <method isAbstract="false" isStatic="false" name="switchState" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="51709" isAbstract="false" name="ArabChrono" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="img" type="Image" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="true" name="IMG_FILEPATH" type="String" visibility="PRIVATE"/>
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="ArabChrono" returnType="" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="chrono" type="Chrono"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="paintCompoinent" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="g" type="Graphics"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="update" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="51708" isAbstract="false" name="DigitalChrono" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="timeLabel" type="JLabel" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="true" name="TIME_FORMAT" type="DecimalFormat" visibility="PRIVATE"/>
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="DigitalChrono" returnType="" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="chrono" type="Chrono"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="setTimeLabel" returnType="void" view="DEFAULT" visibility="PRIVATE">
+        <variable const="false" name="h" type="int"/>
+        <variable const="false" name="m" type="int"/>
+        <variable const="false" name="s" type="int"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="update" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="51707" isAbstract="false" name="RomanChrono" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="img" type="Image" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="true" name="IMG_FILEPATH" type="String" visibility="PRIVATE"/>
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="RomanChrono" returnType="" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="chrono" type="Chrono"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="paintComponent" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="g" type="Graphics"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="update" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="51702" isAbstract="true" name="Subject" visibility="PUBLIC">
+      <method isAbstract="true" isStatic="false" name="attach" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="o" type="Observer"/>
+      </method>
+      <method isAbstract="true" isStatic="false" name="detach" returnType="void" view="DEFAULT" visibility="PUBLIC">
+        <variable const="false" name="o" type="Observer"/>
+      </method>
+      <method isAbstract="true" isStatic="false" name="notifie" returnType="void" view="DEFAULT" visibility="PROTECTED"/>
+    </entity>
+    <entity entityType="CLASS" id="54604" isAbstract="true" name="ChronoPanel" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="true" name="WIDTH" type="int" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="true" name="HEIGHT" type="int" visibility="PRIVATE"/>
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="ChronoPanel" returnType="" view="DEFAULT" visibility="PROTECTED">
+        <variable const="false" name="chrono" type="Chrono"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="getSeconds" returnType="int" view="DEFAULT" visibility="PROTECTED"/>
+      <method isAbstract="false" isStatic="false" name="getMinutes" returnType="int" view="DEFAULT" visibility="PROTECTED"/>
+      <method isAbstract="false" isStatic="false" name="getHours" returnType="int" view="DEFAULT" visibility="PROTECTED"/>
+      <method isAbstract="false" isStatic="false" name="setFrameListener" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
+    </entity>
+    <entity entityType="CLASS" id="54697" isAbstract="true" name="AnalogChrono" visibility="PUBLIC">
+      <attribute const="false" defaultValue="" isStatic="false" name="PANEL_CENTER" type="int" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="SECONDS" type="Pointer" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="MINUTES" type="Pointer" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="HOURS" type="Pointer" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="LABEL_POS_X" type="int" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="LABEL_POS_Y" type="int" visibility="PRIVATE"/>
+      <method is-constructor="true" isAbstract="true" isStatic="false" name="AnalogChrono" returnType="" view="DEFAULT" visibility="PROTECTED"/>
+      <method isAbstract="false" isStatic="false" name="drawPointersAndText" returnType="void" view="DEFAULT" visibility="PROTECTED">
+        <variable const="false" name="g" type="Graphics"/>
+      </method>
+      <method isAbstract="false" isStatic="false" name="drawPointer" returnType="void" view="DEFAULT" visibility="PRIVATE">
+        <variable const="false" name="g2d" type="Graphics2D"/>
+        <variable const="false" name="chronoValue" type="int"/>
+        <variable const="false" name="pointer" type="Pointer"/>
+      </method>
+    </entity>
+    <entity entityType="CLASS" id="55448" isAbstract="false" name="Pointer" visibility="PRIVATE">
+      <attribute const="false" defaultValue="" isStatic="false" name="pointerEndX" type="int" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="pointerEndY" type="int" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="weigth" type="int" visibility="PRIVATE"/>
+      <attribute const="false" defaultValue="" isStatic="false" name="color" type="Color" visibility="PRIVATE"/>
+      <method is-constructor="true" isAbstract="false" isStatic="false" name="Pointer" returnType="" view="DEFAULT" visibility="PRIVATE">
+        <variable const="false" name="endX" type="int"/>
+        <variable const="false" name="endY" type="int"/>
+        <variable const="false" name="w" type="int"/>
+        <variable const="false" name="c" type="Color"/>
+      </method>
     </entity>
     <entity entityType="CLASS" id="57021" isAbstract="false" name="ControlPanel" visibility="PUBLIC">
       <method is-constructor="true" isAbstract="false" isStatic="false" name="ControlPanel" returnType="" view="DEFAULT" visibility="PUBLIC">
@@ -102,152 +204,50 @@
       </method>
       <method isAbstract="false" isStatic="false" name="createButtonsAllChrono" returnType="JPanel" view="DEFAULT" visibility="PRIVATE"/>
     </entity>
-    <entity entityType="CLASS" id="55448" isAbstract="false" name="Pointer" visibility="PRIVATE">
-      <attribute const="false" defaultValue="" isStatic="false" name="pointerEndX" type="int" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="false" name="pointerEndY" type="int" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="false" name="weigth" type="int" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="false" name="color" type="Color" visibility="PRIVATE"/>
-      <method is-constructor="true" isAbstract="false" isStatic="false" name="Pointer" returnType="" view="DEFAULT" visibility="PRIVATE">
-        <variable const="false" name="endX" type="int"/>
-        <variable const="false" name="endY" type="int"/>
-        <variable const="false" name="w" type="int"/>
-        <variable const="false" name="c" type="Color"/>
-      </method>
+    <entity entityType="INTERFACE" id="57088" isAbstract="true" name="Observer" visibility="PUBLIC">
+      <method isAbstract="true" isStatic="false" name="update" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
     </entity>
-    <entity entityType="CLASS" id="54697" isAbstract="true" name="AnalogChrono" visibility="PUBLIC">
-      <attribute const="false" defaultValue="" isStatic="false" name="PANEL_CENTER" type="int" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="false" name="SECONDS" type="Pointer" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="false" name="MINUTES" type="Pointer" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="false" name="HOURS" type="Pointer" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="false" name="LABEL_POS_X" type="int" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="false" name="LABEL_POS_Y" type="int" visibility="PRIVATE"/>
-      <method is-constructor="true" isAbstract="true" isStatic="false" name="AnalogChrono" returnType="" view="DEFAULT" visibility="PROTECTED"/>
-      <method isAbstract="false" isStatic="false" name="drawPointersAndText" returnType="void" view="DEFAULT" visibility="PROTECTED">
-        <variable const="false" name="g" type="Graphics"/>
-      </method>
-      <method isAbstract="false" isStatic="false" name="drawPointer" returnType="void" view="DEFAULT" visibility="PRIVATE">
-        <variable const="false" name="g2d" type="Graphics2D"/>
-        <variable const="false" name="chronoValue" type="int"/>
-        <variable const="false" name="pointer" type="Pointer"/>
-      </method>
-    </entity>
-    <entity entityType="CLASS" id="54604" isAbstract="false" name="ChronoPanel" visibility="PUBLIC">
-      <attribute const="false" defaultValue="" isStatic="false" name="WIDTH" type="int" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="false" name="HEIGHT" type="int" visibility="PRIVATE"/>
-      <method is-constructor="true" isAbstract="false" isStatic="false" name="ChronoPanel" returnType="" view="DEFAULT" visibility="PROTECTED">
-        <variable const="false" name="chrono" type="Chrono"/>
-      </method>
-      <method isAbstract="false" isStatic="false" name="getSeconds" returnType="int" view="DEFAULT" visibility="PROTECTED"/>
-      <method isAbstract="false" isStatic="false" name="getMinutes" returnType="int" view="DEFAULT" visibility="PROTECTED"/>
-      <method isAbstract="false" isStatic="false" name="getHours" returnType="int" view="DEFAULT" visibility="PROTECTED"/>
-      <method isAbstract="false" isStatic="false" name="setFrameListener" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
-    </entity>
-    <entity entityType="CLASS" id="51702" isAbstract="true" name="Subject" visibility="PUBLIC">
-      <method isAbstract="true" isStatic="false" name="attach" returnType="void" view="DEFAULT" visibility="PUBLIC">
-        <variable const="false" name="o" type="Observer"/>
-      </method>
-      <method isAbstract="true" isStatic="false" name="detach" returnType="void" view="DEFAULT" visibility="PUBLIC">
-        <variable const="false" name="o" type="Observer"/>
-      </method>
-      <method isAbstract="true" isStatic="false" name="notifie" returnType="void" view="DEFAULT" visibility="PROTECTED"/>
-    </entity>
-    <entity entityType="CLASS" id="51707" isAbstract="false" name="RomanChrono" visibility="PUBLIC">
-      <attribute const="false" defaultValue="" isStatic="false" name="img" type="Image" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="false" name="IMG_FILEPATH" type="String" visibility="PRIVATE"/>
-      <method is-constructor="true" isAbstract="false" isStatic="false" name="RomanChrono" returnType="" view="DEFAULT" visibility="PUBLIC">
-        <variable const="false" name="chrono" type="Chrono"/>
-      </method>
-      <method isAbstract="false" isStatic="false" name="paintComponent" returnType="void" view="DEFAULT" visibility="PUBLIC">
-        <variable const="false" name="g" type="Graphics"/>
-      </method>
-      <method isAbstract="false" isStatic="false" name="update" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
-    </entity>
-    <entity entityType="CLASS" id="51708" isAbstract="false" name="DigitalChrono" visibility="PUBLIC">
-      <attribute const="false" defaultValue="" isStatic="false" name="timeLabel" type="JLabel" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="true" name="TIME_FORMAT" type="DecimalFormat" visibility="PRIVATE"/>
-      <method is-constructor="true" isAbstract="false" isStatic="false" name="DigitalChrono" returnType="" view="DEFAULT" visibility="PUBLIC">
-        <variable const="false" name="chrono" type="Chrono"/>
-      </method>
-      <method isAbstract="false" isStatic="false" name="setTimeLabel" returnType="void" view="DEFAULT" visibility="PRIVATE">
-        <variable const="false" name="h" type="int"/>
-        <variable const="false" name="m" type="int"/>
-        <variable const="false" name="s" type="int"/>
-      </method>
-      <method isAbstract="false" isStatic="false" name="update" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
-    </entity>
-    <entity entityType="CLASS" id="51709" isAbstract="false" name="ArabChrono" visibility="PUBLIC">
-      <attribute const="false" defaultValue="" isStatic="false" name="img" type="Image" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="false" name="IMG_FILEPATH" type="String" visibility="PRIVATE"/>
-      <method is-constructor="true" isAbstract="false" isStatic="false" name="ArabChrono" returnType="" view="DEFAULT" visibility="PUBLIC">
-        <variable const="false" name="chrono" type="Chrono"/>
-      </method>
-      <method isAbstract="false" isStatic="false" name="paintCompoinent" returnType="void" view="DEFAULT" visibility="PUBLIC">
-        <variable const="false" name="g" type="Graphics"/>
-      </method>
-      <method isAbstract="false" isStatic="false" name="update" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
-    </entity>
-    <entity entityType="CLASS" id="51710" isAbstract="false" name="Chrono" visibility="PUBLIC">
-      <attribute const="false" defaultValue="" isStatic="false" name="seconds" type="int" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="false" name="id" type="int" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="true" name="counter" type="int" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="false" name="timer" type="Timer" visibility="PRIVATE"/>
-      <attribute const="false" defaultValue="" isStatic="false" name="isRunning" type="boolean" visibility="PRIVATE"/>
-      <method is-constructor="true" isAbstract="false" isStatic="false" name="Chrono" returnType="" view="DEFAULT" visibility="PUBLIC"/>
-      <method isAbstract="false" isStatic="false" name="getSecondsData" returnType="int" view="DEFAULT" visibility="PUBLIC"/>
-      <method isAbstract="false" isStatic="false" name="setSecondsData" returnType="void" view="DEFAULT" visibility="PRIVATE">
-        <variable const="false" name="s" type="int"/>
-      </method>
-      <method isAbstract="false" isStatic="false" name="getId" returnType="int" view="DEFAULT" visibility="PUBLIC"/>
-      <method isAbstract="false" isStatic="false" name="start" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
-      <method isAbstract="false" isStatic="false" name="stop" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
-      <method isAbstract="false" isStatic="false" name="reset" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
-      <method isAbstract="false" isStatic="false" name="switchState" returnType="void" view="DEFAULT" visibility="PUBLIC"/>
-    </entity>
-    <entity entityType="CLASS" id="60903" isAbstract="false" name="App" visibility="PUBLIC">
-      <method isAbstract="false" isStatic="true" name="main" returnType="void" view="DEFAULT" visibility="PUBLIC">
-        <variable const="false" name="args" type="String[]"/>
-      </method>
-    </entity>
+    <entity entityType="CLASS" id="57171" isAbstract="false" name="JPanel" visibility="PUBLIC"/>
   </diagramElements>
   <umlView grid="10" name="Main view" open="true">
-    <relationView color="-12566464" relationId="57139">
+    <relationView color="-12566464" relationId="57207">
       <line>
         <point>
-          <x>291</x>
-          <y>71</y>
+          <x>301</x>
+          <y>261</y>
         </point>
         <point>
-          <x>661</x>
-          <y>71</y>
+          <x>891</x>
+          <y>261</y>
         </point>
       </line>
       <labelAssociation>
-        <x>435</x>
-        <y>45</y>
-        <w>48</w>
+        <x>543</x>
+        <y>229</y>
+        <w>57</w>
         <h>16</h>
       </labelAssociation>
       <roleAssociation>
-        <x>295</x>
-        <y>75</y>
+        <x>305</x>
+        <y>265</y>
         <w>0</w>
         <h>16</h>
       </roleAssociation>
       <roleAssociation>
-        <x>625</x>
-        <y>75</y>
+        <x>855</x>
+        <y>265</y>
         <w>0</w>
         <h>16</h>
       </roleAssociation>
       <multipliciteAssociation>
-        <x>295</x>
-        <y>49</y>
+        <x>305</x>
+        <y>239</y>
         <w>8</w>
         <h>16</h>
       </multipliciteAssociation>
       <multipliciteAssociation>
-        <x>647</x>
-        <y>49</y>
+        <x>877</x>
+        <y>239</y>
         <w>7</w>
         <h>16</h>
       </multipliciteAssociation>
@@ -294,105 +294,97 @@
         <h>16</h>
       </multipliciteAssociation>
     </relationView>
-    <relationView color="-12566464" relationId="57207">
+    <relationView color="-12566464" relationId="57139">
       <line>
         <point>
-          <x>301</x>
-          <y>261</y>
+          <x>291</x>
+          <y>71</y>
         </point>
         <point>
-          <x>891</x>
-          <y>261</y>
+          <x>661</x>
+          <y>71</y>
         </point>
       </line>
       <labelAssociation>
-        <x>543</x>
-        <y>229</y>
-        <w>57</w>
+        <x>435</x>
+        <y>45</y>
+        <w>48</w>
         <h>16</h>
       </labelAssociation>
       <roleAssociation>
-        <x>305</x>
-        <y>265</y>
+        <x>295</x>
+        <y>75</y>
         <w>0</w>
         <h>16</h>
       </roleAssociation>
       <roleAssociation>
-        <x>855</x>
-        <y>265</y>
+        <x>625</x>
+        <y>75</y>
         <w>0</w>
         <h>16</h>
       </roleAssociation>
       <multipliciteAssociation>
-        <x>305</x>
-        <y>239</y>
+        <x>295</x>
+        <y>49</y>
         <w>8</w>
         <h>16</h>
       </multipliciteAssociation>
       <multipliciteAssociation>
-        <x>877</x>
-        <y>239</y>
+        <x>647</x>
+        <y>49</y>
         <w>7</w>
         <h>16</h>
       </multipliciteAssociation>
     </relationView>
-    <relationView color="-12566464" relationId="70788">
+    <relationView color="-12566464" relationId="57172">
       <line>
         <point>
-          <x>981</x>
-          <y>711</y>
+          <x>1141</x>
+          <y>191</y>
         </point>
         <point>
-          <x>981</x>
-          <y>681</y>
-        </point>
-        <point>
-          <x>881</x>
-          <y>681</y>
-        </point>
-        <point>
-          <x>881</x>
-          <y>621</y>
+          <x>1141</x>
+          <y>126</y>
         </point>
       </line>
     </relationView>
-    <relationView color="-12566464" relationId="70787">
+    <relationView color="-12566464" relationId="57154">
       <line>
         <point>
-          <x>771</x>
-          <y>711</y>
+          <x>891</x>
+          <y>211</y>
         </point>
         <point>
-          <x>771</x>
-          <y>681</y>
+          <x>751</x>
+          <y>211</y>
         </point>
         <point>
-          <x>881</x>
-          <y>681</y>
-        </point>
-        <point>
-          <x>881</x>
-          <y>621</y>
+          <x>751</x>
+          <y>135</y>
         </point>
       </line>
     </relationView>
-    <relationView color="-12566464" relationId="70786">
+    <relationView color="-12566464" relationId="55449">
       <line>
         <point>
-          <x>1261</x>
-          <y>711</y>
+          <x>621</x>
+          <y>481</y>
         </point>
         <point>
-          <x>1261</x>
-          <y>401</y>
+          <x>671</x>
+          <y>481</y>
+        </point>
+      </line>
+    </relationView>
+    <relationView color="-12566464" relationId="51711">
+      <line>
+        <point>
+          <x>201</x>
+          <y>221</y>
         </point>
         <point>
-          <x>1041</x>
-          <y>401</y>
-        </point>
-        <point>
-          <x>1041</x>
-          <y>351</y>
+          <x>201</x>
+          <y>151</y>
         </point>
       </line>
     </relationView>
@@ -416,55 +408,63 @@
         </point>
       </line>
     </relationView>
-    <relationView color="-12566464" relationId="51711">
+    <relationView color="-12566464" relationId="70786">
       <line>
         <point>
-          <x>201</x>
-          <y>221</y>
+          <x>1261</x>
+          <y>711</y>
         </point>
         <point>
-          <x>201</x>
-          <y>151</y>
+          <x>1261</x>
+          <y>401</y>
+        </point>
+        <point>
+          <x>1041</x>
+          <y>401</y>
+        </point>
+        <point>
+          <x>1041</x>
+          <y>351</y>
         </point>
       </line>
     </relationView>
-    <relationView color="-12566464" relationId="55449">
+    <relationView color="-12566464" relationId="70787">
       <line>
         <point>
-          <x>621</x>
-          <y>481</y>
+          <x>771</x>
+          <y>711</y>
         </point>
         <point>
-          <x>671</x>
-          <y>481</y>
+          <x>771</x>
+          <y>681</y>
+        </point>
+        <point>
+          <x>881</x>
+          <y>681</y>
+        </point>
+        <point>
+          <x>881</x>
+          <y>621</y>
         </point>
       </line>
     </relationView>
-    <relationView color="-12566464" relationId="57154">
+    <relationView color="-12566464" relationId="70788">
       <line>
         <point>
-          <x>891</x>
-          <y>211</y>
+          <x>981</x>
+          <y>711</y>
         </point>
         <point>
-          <x>751</x>
-          <y>211</y>
+          <x>981</x>
+          <y>681</y>
         </point>
         <point>
-          <x>751</x>
-          <y>135</y>
-        </point>
-      </line>
-    </relationView>
-    <relationView color="-12566464" relationId="57172">
-      <line>
-        <point>
-          <x>1141</x>
-          <y>191</y>
+          <x>881</x>
+          <y>681</y>
         </point>
         <point>
-          <x>1141</x>
-          <y>126</y>
+          <x>881</x>
+          <y>621</y>
         </point>
       </line>
     </relationView>
@@ -486,27 +486,67 @@
         <h>16</h>
       </labelAssociation>
     </relationView>
-    <componentView color="-2079" componentID="60903" displayAttributes="true" displayDefault="true" displayMethods="true">
+    <componentView color="-2079" componentID="57171" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
-        <x>170</x>
-        <y>800</y>
-        <w>210</w>
-        <h>70</h>
+        <x>1070</x>
+        <y>70</y>
+        <w>150</w>
+        <h>55</h>
       </geometry>
     </componentView>
-    <componentView color="-2079" componentID="51710" displayAttributes="true" displayDefault="true" displayMethods="true">
+    <componentView color="-2079" componentID="57088" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>660</x>
+        <y>50</y>
+        <w>150</w>
+        <h>84</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="57021" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>10</x>
+        <y>590</y>
+        <w>530</w>
+        <h>130</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="55448" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>350</x>
+        <y>430</y>
+        <w>270</w>
+        <h>130</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="54697" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>670</x>
+        <y>430</y>
+        <w>420</w>
+        <h>190</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="54604" displayAttributes="true" displayDefault="true" displayMethods="true">
+      <geometry>
+        <x>890</x>
+        <y>190</y>
+        <w>290</w>
+        <h>160</h>
+      </geometry>
+    </componentView>
+    <componentView color="-2079" componentID="51702" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
         <x>110</x>
-        <y>220</y>
-        <w>190</w>
-        <h>250</h>
+        <y>50</y>
+        <w>180</w>
+        <h>100</h>
       </geometry>
     </componentView>
-    <componentView color="-2079" componentID="51709" displayAttributes="true" displayDefault="true" displayMethods="true">
+    <componentView color="-2079" componentID="51707" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
-        <x>860</x>
+        <x>610</x>
         <y>710</y>
-        <w>240</w>
+        <w>230</w>
         <h>130</h>
       </geometry>
     </componentView>
@@ -518,68 +558,28 @@
         <h>130</h>
       </geometry>
     </componentView>
-    <componentView color="-2079" componentID="51707" displayAttributes="true" displayDefault="true" displayMethods="true">
+    <componentView color="-2079" componentID="51709" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
-        <x>610</x>
+        <x>860</x>
         <y>710</y>
-        <w>230</w>
+        <w>240</w>
         <h>130</h>
       </geometry>
     </componentView>
-    <componentView color="-2079" componentID="51702" displayAttributes="true" displayDefault="true" displayMethods="true">
+    <componentView color="-2079" componentID="51710" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
         <x>110</x>
-        <y>50</y>
-        <w>180</w>
-        <h>100</h>
+        <y>220</y>
+        <w>190</w>
+        <h>250</h>
       </geometry>
     </componentView>
-    <componentView color="-2079" componentID="54604" displayAttributes="true" displayDefault="true" displayMethods="true">
+    <componentView color="-2079" componentID="60903" displayAttributes="true" displayDefault="true" displayMethods="true">
       <geometry>
-        <x>890</x>
-        <y>190</y>
-        <w>290</w>
-        <h>160</h>
-      </geometry>
-    </componentView>
-    <componentView color="-2079" componentID="54697" displayAttributes="true" displayDefault="true" displayMethods="true">
-      <geometry>
-        <x>670</x>
-        <y>430</y>
-        <w>420</w>
-        <h>190</h>
-      </geometry>
-    </componentView>
-    <componentView color="-2079" componentID="55448" displayAttributes="true" displayDefault="true" displayMethods="true">
-      <geometry>
-        <x>350</x>
-        <y>430</y>
-        <w>270</w>
-        <h>130</h>
-      </geometry>
-    </componentView>
-    <componentView color="-2079" componentID="57021" displayAttributes="true" displayDefault="true" displayMethods="true">
-      <geometry>
-        <x>10</x>
-        <y>590</y>
-        <w>530</w>
-        <h>130</h>
-      </geometry>
-    </componentView>
-    <componentView color="-2079" componentID="57088" displayAttributes="true" displayDefault="true" displayMethods="true">
-      <geometry>
-        <x>660</x>
-        <y>50</y>
-        <w>150</w>
-        <h>84</h>
-      </geometry>
-    </componentView>
-    <componentView color="-2079" componentID="57171" displayAttributes="true" displayDefault="true" displayMethods="true">
-      <geometry>
-        <x>1070</x>
-        <y>70</y>
-        <w>150</w>
-        <h>55</h>
+        <x>170</x>
+        <y>800</y>
+        <w>210</w>
+        <h>70</h>
       </geometry>
     </componentView>
     <note color="-2079" content="JPanel is a generic ligthweight container class from the Java Swing library">

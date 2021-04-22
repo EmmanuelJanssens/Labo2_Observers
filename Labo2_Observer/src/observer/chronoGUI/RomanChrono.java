@@ -24,7 +24,7 @@ public class RomanChrono extends AnalogChrono{
     // Image used to fetch the background image
     private Image img;
 
-    // Pathfile to the background image
+    // Pathfile to the background image (assets folder located in the root folder project)
     private final static String IMG_FILEPATH = "assets/cadran_chiffres_romains.jpg";
 
     /**
