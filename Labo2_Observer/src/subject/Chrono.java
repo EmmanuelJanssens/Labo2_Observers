@@ -40,6 +40,35 @@ public class Chrono extends Subject {
     }
 
     /**
+     * Getter for the data seconds
+     *
+     * @return an int the total number of seconds spent by the chronometer running
+     */
+    public int getSecondsData()
+    {
+        return seconds;
+    }
+
+    /**
+     * Mutator for seconds, changes the data of the chronometer
+     * so we must notify all observers
+     * @param s the new value for seconds
+     */
+    private void setSecondsData(int s) {
+        seconds = s;
+        notifie();
+    }
+
+    /**
+     * Getter for the subject id
+     *
+     * @return an int the chronometer id
+     * */
+    public int getId(){
+        return id;
+    }
+
+    /**
      * Switch between states mainly to stop or start a timer
      */
     public void switchState() {
@@ -83,34 +112,4 @@ public class Chrono extends Subject {
         stop();
         setSecondsData(0);
     }
-
-    /**
-     * Mutator for seconds, changes the data of the chronometer
-     * so we must notify all observers
-     * @param s the new value for seconds
-     */
-    private void setSecondsData(int s) {
-        seconds = s;
-        notifie();
-    }
-
-    /**
-     * Getter for the data seconds
-     *
-     * @return an int the total number of seconds spent by the chronometer running
-     */
-    public int getSecondsData()
-    {
-        return seconds;
-    }
-
-    /**
-     * Getter for the subject id
-     *
-     * @return an int the chronometer's id
-     * */
-    public int getId(){
-        return id;
-    }
-
 }

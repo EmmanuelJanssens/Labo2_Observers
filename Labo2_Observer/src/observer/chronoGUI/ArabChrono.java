@@ -49,7 +49,7 @@ public class ArabChrono extends AnalogChrono{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         g.drawImage(img, 0, 0, this);
-        drawPointersAndLabel(g);
+        drawPointersAndText(g);
     }
 
     /**

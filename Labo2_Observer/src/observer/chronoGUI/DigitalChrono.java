@@ -34,13 +34,13 @@ public class DigitalChrono extends ChronoPanel {
 
         super(chrono);
 
-        // To center element
+        // To center components
         setLayout(new GridBagLayout());
 
-        // Add the chronometer text (name + value) on the panel
+        // Add the chronometer text ("Chrono#id") on the panel
         add(new JLabel(getText() + ": "));
 
-        // Initialize the label used to display the time
+        // Initialize and add the label used to display the changing time
         timeLabel = new JLabel();
         setTimeLabel(0,0,0);
         add(timeLabel);
@@ -49,14 +49,14 @@ public class DigitalChrono extends ChronoPanel {
     /**
      * Set the time displayed on the responsible label
      *
-     * @param hour number of hour to set
-     * @param minute number of minutes to set
-     * @param second number of seconds to set
+     * @param h number of hours to set
+     * @param m number of minutes to set
+     * @param s number of seconds to set
      * */
-    private void setTimeLabel(long hour, long minute, long second){
-        timeLabel.setText(TIME_FORMAT.format(hour) + "h "
-                + TIME_FORMAT.format(minute) + "m "
-                + TIME_FORMAT.format(second) + "s ");
+    private void setTimeLabel(int h, int m, int s){
+        timeLabel.setText(TIME_FORMAT.format(h) + "h "
+                + TIME_FORMAT.format(m) + "m "
+                + TIME_FORMAT.format(s) + "s ");
     }
 
     /**

@@ -26,11 +26,8 @@ import java.util.List;
 
 public class ControlPanel
 {
-    // Main display window
-    private JFrame mainFrame;
-
-    // List of all the subjects to display
-    private List<Subject> subjects = new LinkedList<>();
+    // List of all the concrete subjects to display
+    private List<Chrono> subjects = new LinkedList<>();
 
     /**
      * Creates the main frame and calls other function to generate its content
@@ -39,7 +36,8 @@ public class ControlPanel
      */
     public ControlPanel(int nbChronos)
     {
-        mainFrame = new JFrame();
+        // Main display window
+        JFrame mainFrame = new JFrame();
         mainFrame.setTitle("Panneau de contrôle");
         mainFrame.setResizable(false);
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,7 +49,7 @@ public class ControlPanel
         // Create a row of buttons for each chronometer and add it to the list
         for(int i = 0; i < nbChronos; i++) {
             subjects.add(new Chrono());
-            mainFrame.add(createButtonsRow((Chrono) subjects.get(i)));
+            mainFrame.add(createButtonsRow(subjects.get(i)));
         }
         mainFrame.add(createButtonsAllChrono());
 
@@ -74,7 +72,7 @@ public class ControlPanel
     }
 
     /**
-     * Creates a non resizeable window that contains a list of observers
+     * Creates a window with a Chrono subject displayed by a list of observers
      *
      * @param resizeable indicates if the window can be resized or not
      * @param components list of components representing the observers
@@ -159,7 +157,7 @@ public class ControlPanel
     }
 
     /**
-     * Create the row of buttons which displays all the chronometer in the type :
+     * Create the row of buttons which displays all the chronometers in the type :
      * roman, arab or digital indicated on the button text
      *
      * @return a JPanel containing all this buttons in a row
@@ -175,39 +173,39 @@ public class ControlPanel
         label.setText("Tout les chronos:" );
         buttonRowPanel.add(label);
 
-        // Button that creates a roman panel for each Chrono subject, in one window
+        // Button that creates a roman panel for each Chrono subject, in one resizeable window
         buttonRowPanel.add(createButton("Cadran romain", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                List<RomanChrono> chrono = new LinkedList<>();
+                List<RomanChrono> romanChronos = new LinkedList<>();
                 for (Subject subject : subjects) {
-                    chrono.add(new RomanChrono((Chrono) subject));
+                    romanChronos.add(new RomanChrono((Chrono) subject));
                 }
-                createChronoWindow(true,  chrono.toArray(new RomanChrono[chrono.size()]));
+                createChronoWindow(true,  romanChronos.toArray(new RomanChrono[romanChronos.size()]));
             }
         }));
 
-        // Button that creates an arab panel for each Chrono subject, in one window
+        // Button that creates an arab panel for each Chrono subject, in one resizeable window
         buttonRowPanel.add(createButton("Cadran arabe", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                List<ArabChrono> chrono = new LinkedList<>();
+                List<ArabChrono> arabChronos = new LinkedList<>();
                 for (Subject subject : subjects) {
-                    chrono.add(new ArabChrono((Chrono) subject));
+                    arabChronos.add(new ArabChrono((Chrono) subject));
                 }
-                createChronoWindow(true, chrono.toArray(new ArabChrono[chrono.size()]));
+                createChronoWindow(true, arabChronos.toArray(new ArabChrono[arabChronos.size()]));
             }
         }));
 
-        // Button that creates an arab panel for each Chrono subject, in one window
+        // Button that creates a digital panel for each Chrono subject, in one resizeable window
         buttonRowPanel.add(createButton("Numérique", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                List<DigitalChrono> chrono = new LinkedList<>();
+                List<DigitalChrono> digitalChronos = new LinkedList<>();
                 for (Subject subject : subjects) {
-                    chrono.add(new DigitalChrono((Chrono) subject));
+                    digitalChronos.add(new DigitalChrono((Chrono) subject));
                 }
-                createChronoWindow(true, chrono.toArray(new DigitalChrono[chrono.size()]));
+                createChronoWindow(true, digitalChronos.toArray(new DigitalChrono[digitalChronos.size()]));
             }
         }));
 

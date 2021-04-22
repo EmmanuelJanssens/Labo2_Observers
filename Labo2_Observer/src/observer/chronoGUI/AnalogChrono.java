@@ -41,20 +41,21 @@ abstract class AnalogChrono extends ChronoPanel {
         /**
          * Constructor create a pointer
          *
-         * @param pointerEndY pointer end x position
-         * @param pointerEndX pointer end y position
+         * @param endX pointer end x position
+         * @param endY pointer end y position
          * @param c Color of the pointer
-         * @param w Thickness of the pointer's stroke line
+         * @param w Thickness of the pointer line stroke
          * */
-        private Pointer(int pointerEndX, int pointerEndY, int w, Color c) {
-            this.pointerEndX = pointerEndX;
-            this.pointerEndY = pointerEndY;
-            weight = w;
-            color = c;
+        private Pointer(int endX, int endY, int w, Color c) {
+            this.pointerEndX = endX;
+            this.pointerEndY = endY;
+            this.weight = w;
+            this.color = c;
         }
     }
 
-    // One of the coordinates of the center of the (square) panel, used to position elements
+    // One of the coordinates of the center of the (square) panel,
+    // used in multiple times to position elements
     private final int PANEL_CENTER = (int) getPreferredSize().getWidth()/2;
 
     // The 3 pointers of an analog chronometer
@@ -62,7 +63,7 @@ abstract class AnalogChrono extends ChronoPanel {
     private final Pointer MINUTES = new Pointer(PANEL_CENTER, 50,3,Color.blue);
     private final Pointer HOURS = new Pointer(PANEL_CENTER, 70,5,Color.black);
 
-    // The position of the chronometer's label name to display
+    // The position of the chronometer text ("Chrono#id") to display
     private final int LABEL_POS_X = PANEL_CENTER - 25;
     private final int LABEL_POS_Y = PANEL_CENTER + 15;
 
@@ -80,37 +81,31 @@ abstract class AnalogChrono extends ChronoPanel {
      *
      * @param g the Graphics of the panel where is drawn the elements
      * */
-    protected void drawPointersAndLabel(Graphics g){
+    protected void drawPointersAndText(Graphics g){
 
-        // Draw the chronometer's label name
+        // Draw the chronometer text on GUI (Chrono#id)
         g.drawString(getText(), LABEL_POS_X, LABEL_POS_Y);
 
         // Draw the pointers
-        drawPointer((Graphics2D) g, getSeconds(), SECONDS.weight, SECONDS.color,
-                SECONDS.pointerEndX, SECONDS.pointerEndY);
-        drawPointer((Graphics2D) g, getMinutes(), MINUTES.weight, MINUTES.color,
-                MINUTES.pointerEndX, MINUTES.pointerEndY);
-        drawPointer((Graphics2D) g, getHours() * 5, HOURS.weight, HOURS.color,
-                HOURS.pointerEndX, HOURS.pointerEndY);
+        drawPointer((Graphics2D) g, getSeconds(), SECONDS);
+        drawPointer((Graphics2D) g, getMinutes(), MINUTES);
+        // The hour pointer moves with an angle 5 times greater than the others
+        drawPointer((Graphics2D) g, getHours() * 5, HOURS);
     }
 
     /**
-     * Draw a pointer
+     * Draw a pointer depending on the chronometer time spent
      *
      * @param g2d the Graphics2D of the panel where is drawn the elements
      * @param chronoValue the number of seconds/minutes/hours spent by the subject chronometer running
-     * @param pointerColor the color of the pointer
-     * @param pointerEndX the pointer end x position
-     * @param pointerEndY the pointer end y position
-     * @param pointerWeight the thickness of the pointer line stroke
+     * @param pointer the Pointer to draw
      * */
-    private void drawPointer(Graphics2D g2d, long chronoValue, float pointerWeight, Color pointerColor,
-                               float pointerEndX, float pointerEndY){
+    private void drawPointer(Graphics2D g2d, int chronoValue, Pointer pointer){
 
-        g2d.setStroke(new BasicStroke(pointerWeight));
-        g2d.setColor(pointerColor);
+        g2d.setStroke(new BasicStroke(pointer.weight));
+        g2d.setColor(pointer.color);
 
-        Line2D pointerLine = new Line2D.Float(PANEL_CENTER, PANEL_CENTER, pointerEndX, pointerEndY);
+        Line2D pointerLine = new Line2D.Float(PANEL_CENTER, PANEL_CENTER, pointer.pointerEndX, pointer.pointerEndY);
         AffineTransform atSecond =
                 AffineTransform.getRotateInstance(
                         Math.toRadians(6 * chronoValue),

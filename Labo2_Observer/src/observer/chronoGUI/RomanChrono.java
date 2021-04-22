@@ -1,7 +1,7 @@
 /**
  * Concrete class observer from the Observer pattern
  * It represents the GUI specific for the display
- * of an analog chronometer with an roman dial
+ * of an analog chronometer with a roman dial
  *
  * This class extends AnalogChrono which extends ChronoPanel
  * which extends JPanel and implements Observer
@@ -49,7 +49,7 @@ public class RomanChrono extends AnalogChrono{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         g.drawImage(img, 0, 0, this);
-        drawPointersAndLabel(g);
+        drawPointersAndText(g);
     }
 
     /**

@@ -26,7 +26,7 @@ abstract public class Subject {
      *
      * @param o observer to attach
      */
-    public void attach(ChronoPanel o){
+    public void attach(Observer o){
         if(!observers.contains(o))
             observers.add(o);
     }
@@ -45,7 +45,7 @@ abstract public class Subject {
      * Notify all subscribed observers
      * This method is called when the data of the subject has changed
      */
-    void notifie(){
+    protected void notifie(){
         for(Observer o : observers){
             o.update();
         }

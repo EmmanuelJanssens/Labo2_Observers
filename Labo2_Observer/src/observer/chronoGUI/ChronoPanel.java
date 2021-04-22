@@ -3,6 +3,8 @@
  * from the Observer pattern
  *
  * It represents a JPanel specific for a chronometer GUI
+ * observing a Chrono subject, retrieving data from it
+ * and formatting those datas for concretes observers
  *
  * @author Emmanuel Janssens
  * @author Rosalie Chhen
@@ -27,11 +29,14 @@ abstract public class ChronoPanel extends JPanel implements Observer {
     // Concrete subject to observe
     private Chrono chrono;
 
-    // Dimension of the panel
-    private final Dimension DIMENSION = new Dimension(200,200);
+    // Dimensions of the panel
+    private final static int WIDTH = 200;
+    private final static int HEIGHT = 200;
+
 
     /**
-     * Constructor
+     * Constructor create a JPanel with the subject to observe, subscribe to it,
+     * set size and add a mouse listener
      *
      * @param chrono the Chrono subject to observe
      * */
@@ -43,7 +48,7 @@ abstract public class ChronoPanel extends JPanel implements Observer {
         // it subscribes the current observer to a subject
         chrono.attach(this);
 
-        setPreferredSize(DIMENSION);
+        setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
         // When the user clicks on the panel of a chronometer,
         // it stop the timer if it was running and vice-versa
@@ -94,8 +99,7 @@ abstract public class ChronoPanel extends JPanel implements Observer {
     }
 
     /**
-     * Closing a window containing observers
-     * detach the observers from the subject
+     * Closing a window containing observer detach the observers from the subject
      * stopping the subject from continuing to notify a deleted observer
      * */
     public void setFrameListener() {
